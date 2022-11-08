@@ -1,26 +1,30 @@
-  class Show {
+import 'dart:convert';
+import 'dart:developer' as developer;
+
+import 'package:progetto_esame/models/show.api.dart';
+
+class Show {
     final String name;
     final String image;
     final int id;
     final List<String> genres;
-    final int rating;
+    final num rating;
     final int duration;
 
-    Show({this.name, this.image, this.id, this.genres, this.rating, this.duration});
+    Show({required this.name, required this.image, required this.id, required this.genres, required this.rating, required this.duration});
 
-    factory Show.fromJson(dynamic json) {
+    factory Show.fromJson(TmpShow a) {
       return Show(
-          name: json['name'] as String,
-          image: json['images'] as String,
-          id: json['id'] as int,
-          genres: json['genres'] as List<String>,
-          rating: json['rating'] as int,
-          duration: json['runtime']);
+          name: a.name,
+          image: a.image,
+          id: a.id,
+          genres: a.genres,
+          rating: a.rating,
+          duration: a.duration);
 
     }
 
     static List<Show> showsFromSnapshot(List snapshot) {
-
       return snapshot.map((data) {
         return Show.fromJson(data);
       }).toList();

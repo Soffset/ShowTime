@@ -6,21 +6,21 @@ class ShowCard extends StatelessWidget {
   final String rating;
   final String duration;
   final String thumbnailUrl;
-  const ShowCard({Key key,
-    @required this.title,
-    @required this.duration,
-    @required this.rating,
-    @required this.thumbnailUrl,
-  }) : super(key: key);
+  const ShowCard({
+    required this.title,
+    required this.duration,
+    required this.rating,
+    required this.thumbnailUrl,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
       width: MediaQuery.of(context).size.width,
-      height: 180,
+      height: 210,
       decoration: BoxDecoration(
         color: Colors.black,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(9),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.6),

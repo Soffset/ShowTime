@@ -5,11 +5,11 @@ class RecipeCard extends StatelessWidget {
   final String rating;
   final String cookTime;
   final String thumbnailUrl;
-  const RecipeCard({Key key,
-    @required this.title,
-    @required this.cookTime,
-    @required this.rating,
-    @required this.thumbnailUrl,
+  const RecipeCard({required Key key,
+    required this.title,
+    required this.cookTime,
+    required this.rating,
+    required this.thumbnailUrl,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {

@@ -9,7 +9,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Show> _shows;
+  List<Show> _shows = [];
   bool _isLoading = true;
 
   @override
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
           itemBuilder: (context, index) {
             return ShowCard(
                 title: _shows[index].name,
-                duration: _shows[index].duration as String,
+                duration: _shows[index].duration.toString(),
                 rating: _shows[index].rating.toString(),
                 thumbnailUrl: _shows[index].image);
           },
