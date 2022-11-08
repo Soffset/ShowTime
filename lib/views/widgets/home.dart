@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:progetto_esame/models/recipe.api.dart';
-import 'package:progetto_esame/models/recipe.dart';
-import 'package:progetto_esame/views/widgets/recipe_card.dart';
+import 'package:progetto_esame/models/show.api.dart';
+import 'package:progetto_esame/models/show.dart';
+import 'package:progetto_esame/views/widgets/show_card.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -9,20 +9,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Recipe> _recipes;
+  List<Show> _shows;
   bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    getRecipes();
+    getShows();
   }
 
-  Future<void> getRecipes() async {
-    _recipes = await RecipeApi.getRecipe();
+  Future<void> getShows() async {
+    _shows = await ShowApi.getShow();
     setState(() {
       _isLoading = false;
     });
+
   }
 
   @override
@@ -32,22 +33,22 @@ class _HomePageState extends State<HomePage> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
-              Icon(Icons.restaurant_menu),
+              Icon(Icons.movie_rounded),
               SizedBox(width: 10),
-              Text('Food Recipe')
+              Text('Shows')
             ],
           ),
         ),
         body: _isLoading
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : ListView.builder(
-          itemCount: _recipes.length,
+          itemCount: _shows.length,
           itemBuilder: (context, index) {
-            return RecipeCard(
-                title: _recipes[index].name,
-                cookTime: _recipes[index].totalTime,
-                rating: _recipes[index].rating.toString(),
-                thumbnailUrl: _recipes[index].images);
+            return ShowCard(
+                title: _shows[index].name,
+                duration: _shows[index].duration as String,
+                rating: _shows[index].rating.toString(),
+                thumbnailUrl: _shows[index].image);
           },
         ));
   }
