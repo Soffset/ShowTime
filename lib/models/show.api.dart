@@ -18,11 +18,11 @@ class ShowApi {
       List<String> genres = [];
       var s = TmpShow(
           i['name'],
-          i['image']['medium'],
+          i['image']['original'],
           i['id'],
           genres,
           checkDouble(i['rating']['average']),
-          i['runtime'] );
+          i['averageRuntime'] );
       _temp.add(s);
     }
 
@@ -32,9 +32,13 @@ class ShowApi {
   static num checkDouble(dynamic value) {
     if (value is String) {
       return num.parse(value);
+    } else if(value == null){
+      return -1;
     } else {
       return value;
     }
+
+
 
   }
 }

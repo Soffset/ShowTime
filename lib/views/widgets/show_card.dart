@@ -17,10 +17,10 @@ class ShowCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
       width: MediaQuery.of(context).size.width,
-      height: 210,
+      height: MediaQuery.of(context).size.height/2,
       decoration: BoxDecoration(
         color: Colors.black,
-        borderRadius: BorderRadius.circular(9),
+        borderRadius: BorderRadius.circular(6),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.6),
@@ -28,8 +28,8 @@ class ShowCard extends StatelessWidget {
               0.0,
               10.0,
             ),
-            blurRadius: 10.0,
-            spreadRadius: -6.0,
+            blurRadius: 8.0,
+            spreadRadius: -8.0,
           ),
         ],
         image: DecorationImage(
