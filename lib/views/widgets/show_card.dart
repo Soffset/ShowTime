@@ -1,60 +1,98 @@
 import 'package:flutter/material.dart';
 import 'package:progetto_esame/models/show.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ShowCard extends StatelessWidget {
   final String title;
   final String rating;
   final String duration;
   final String thumbnailUrl;
-  const ShowCard({
+  const ShowCard({Key? key,
     required this.title,
     required this.duration,
     required this.rating,
     required this.thumbnailUrl,
-  });
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height/2,
+      height: MediaQuery.of(context).size.height/4.5,
       decoration: BoxDecoration(
-        color: Colors.black,
+        color: const Color(0xff48495B),
         borderRadius: BorderRadius.circular(6),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.6),
+            color: Colors.black.withOpacity(0.4),
             offset: const Offset(
               0.0,
-              10.0,
+              7.0,
             ),
             blurRadius: 8.0,
-            spreadRadius: -8.0,
+            spreadRadius: -6.0,
           ),
         ],
-        image: DecorationImage(
-          colorFilter: ColorFilter.mode(
-            Colors.black.withOpacity(0.35),
-            BlendMode.multiply,
-          ),
-          image: NetworkImage(thumbnailUrl),
-          fit: BoxFit.cover,
-        ),
       ),
-      child: Stack(
+      child: Row(
+        children: [
+          Container(
+          margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
+          width: MediaQuery.of(context).size.width/3.2,
+          height: MediaQuery.of(context).size.height,
+          child:
+            ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: Image(
+                image: NetworkImage(thumbnailUrl),
+                  fit: BoxFit.fill
+              )
+            )
+          ),
+          Column(
+            children:[
+              Align(
+                alignment: Alignment.center,
+                child: Container (
+                  margin: const EdgeInsets.fromLTRB(2, 7, 0, 7),
+                  width: MediaQuery.of(context).size.width/1.9,
+                  //color: Colors.red,
+                  child: Text(
+                    title,
+                    style: GoogleFonts.roboto(
+                        textStyle: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                            fontSize: 19,
+                        )
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+
+              ),
+            ],
+          )
+        ],
+      ),
+      /*Stack(
         children: [
           Align(
             alignment: Alignment.center,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
               child: Text(
                 title,
-                style: const TextStyle(
-                  fontSize: 19,
+                style: GoogleFonts.roboto(
+                  textStyle: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w400,
+                  )
                 ),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.left,
               ),
             ),
           ),
@@ -105,7 +143,7 @@ class ShowCard extends StatelessWidget {
             ),
           ),
         ],
-      ),
+      ),*/
     );
   }
 }
