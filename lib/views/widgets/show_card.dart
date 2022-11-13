@@ -43,121 +43,135 @@ class ShowCard extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
-                  width: MediaQuery.of(context).size.width/3.2,
-                  height: MediaQuery.of(context).size.height,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(6),
-                    child: Image (
+                //color: Colors.blue,
+                margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
+                width: MediaQuery.of(context).size.width/3.2,
+                height: MediaQuery.of(context).size.height,
+                child: Material(
+                  color: Colors.transparent,
+                  child: Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(6),
+                        child: Image(
                           image: CachedNetworkImageProvider(thumbnailUrl),
                           fit: BoxFit.cover,
-                    ),
+                          width: double.infinity,
+                          height: double.infinity,
+                        ),
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(6),
+                          onTap: () {},
+                        ),
+                      ),
+                    ],
                   ),
+                ),
               ),
               Expanded(
                   flex: 1,
-                  child: Container(
-                    //color: Colors.greenAccent,
-                    child: Column(
-                      children:[
-                        Align(
-                          alignment: Alignment.center,
-                          child: Container (
-                            //color: Colors.red,//debug
-                            margin: const EdgeInsets.fromLTRB(2, 8, 0, 5),
-                            width: double.infinity,
-                            child: Text(
-                              title,
-                              style: GoogleFonts.roboto(
-                                  textStyle: const TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 21,
-                                  )
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                              textAlign: TextAlign.left,
-                            ),
-                          ),
-
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Container (
-                            //color: Colors.amberAccent,
-                            margin: const EdgeInsets.fromLTRB(3, 2, 10, 7),
-                            width: double.infinity,
-                            //color: Colors.red,
-                            child: Text(
-                              summary,
-                              style: GoogleFonts.roboto(
-                                  textStyle: const TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14.5,
-                                  )
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 4,
-                              textAlign: TextAlign.left,
-                            ),
-                          ),
-
-                        ),
-                        const Spacer(),
-                        Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Container(
-                            //color: Colors.greenAccent,
-                            margin: const EdgeInsets.fromLTRB(1, 0, 7, 0),
-                            width: double.infinity,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
-                                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 7),
-                                  decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.4),
-                                    borderRadius: BorderRadius.circular(6),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.star,
-                                        color: Colors.yellow,
-                                        size: 18,
-                                      ),
-                                      const SizedBox(width: 7),
-                                      Text(rating),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
-                                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 7),
-                                  decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.4),
-                                    borderRadius: BorderRadius.circular(6),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.schedule,
-                                        color: Colors.blue,
-                                        size: 18,
-                                      ),
-                                      const SizedBox(width: 7),
-                                      Text(duration),
-                                    ],
-                                  ),
+                  child: Column(
+                    children:[
+                      Align(
+                        alignment: Alignment.center,
+                        child: Container (
+                          //color: Colors.red,//debug
+                          margin: const EdgeInsets.fromLTRB(2, 8, 0, 5),
+                          width: double.infinity,
+                          child: Text(
+                            title,
+                            style: GoogleFonts.roboto(
+                                textStyle: const TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 21,
                                 )
-                              ],
                             ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            textAlign: TextAlign.left,
                           ),
-
                         ),
-                      ],
-                    ),
+
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Container (
+                          //color: Colors.amberAccent,
+                          margin: const EdgeInsets.fromLTRB(3, 2, 10, 7),
+                          width: double.infinity,
+                          //color: Colors.red,
+                          child: Text(
+                            summary,
+                            style: GoogleFonts.roboto(
+                                textStyle: const TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14.5,
+                                )
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 4,
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+
+                      ),
+                      const Spacer(),
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Container(
+                          //color: Colors.greenAccent,
+                          margin: const EdgeInsets.fromLTRB(1, 0, 7, 0),
+                          width: double.infinity,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
+                                margin: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.4),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.star,
+                                      color: Colors.yellow,
+                                      size: 18,
+                                    ),
+                                    const SizedBox(width: 7),
+                                    Text(rating),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
+                                margin: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.4),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.schedule,
+                                      color: Colors.blue,
+                                      size: 18,
+                                    ),
+                                    const SizedBox(width: 7),
+                                    Text(duration),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+
+                      ),
+                    ],
                   ),
               )
 
