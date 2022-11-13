@@ -10,17 +10,19 @@ class Show {
     final List<String> genres;
     final num rating;
     final int duration;
+    final String summary;
 
-    Show({required this.name, required this.image, required this.id, required this.genres, required this.rating, required this.duration});
+    Show({required this.name, required this.image, required this.id, required this.genres, required this.rating, required this.duration, required this.summary});
 
     factory Show.fromJson(TmpShow a) {
       return Show(
-          name: a.name,
-          image: a.image,
-          id: a.id,
-          genres: a.genres,
-          rating: a.rating,
-          duration: a.duration);
+        name: a.name,
+        image: a.image,
+        id: a.id,
+        genres: a.genres,
+        rating: a.rating,
+        duration: a.duration,
+        summary: a.summary);
 
     }
 
@@ -34,6 +36,6 @@ class Show {
 
     @override
     String toString(){
-      return 'Show {name: $name, image: $image, id: $id, genres: $genres, rating: $rating, duration: $duration }';
+      return 'Show {name: $name, image: $image, id: $id, genres: $genres, rating: $rating, duration: $duration, summary: $summary }';
     }
   }

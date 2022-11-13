@@ -48,7 +48,8 @@ class _HomePageState extends State<HomePage> {
                 title: _shows[index].name,
                 duration: _shows[index].duration.toString(),
                 rating: _shows[index].rating.toString(),
-                thumbnailUrl: _shows[index].image);
+                thumbnailUrl: _shows[index].image,
+                summary: _shows[index].summary.toString());
           },
         ));
   }

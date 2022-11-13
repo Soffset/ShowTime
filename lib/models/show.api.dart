@@ -17,12 +17,13 @@ class ShowApi {
     for (var i in data) {
       List<String> genres = [];
       var s = TmpShow(
-          i['name'],
-          i['image']['original'],
-          i['id'],
-          genres,
-          checkDouble(i['rating']['average']),
-          i['averageRuntime'] );
+        i['name'],
+        i['image']['original'],
+        i['id'],
+        genres,
+        checkDouble(i['rating']['average']),
+        i['averageRuntime'],
+        formatString(i['summary']),);
       _temp.add(s);
     }
 
@@ -37,9 +38,13 @@ class ShowApi {
     } else {
       return value;
     }
+  }
 
-
-
+  static String formatString(String str){
+    String formatted = str;
+    formatted = formatted.replaceAll ("<p>", "").replaceAll ("</p>", "");
+    formatted = formatted.replaceAll ("<b>", "").replaceAll ("</b>", "");
+    return formatted;
   }
 }
 
@@ -50,6 +55,7 @@ class TmpShow {
   List<String> genres;
   num rating;
   int duration;
-  TmpShow(this.name, this.image, this.id, this.genres, this.rating, this.duration);
+  String summary;
+  TmpShow(this.name, this.image, this.id, this.genres, this.rating, this.duration, this.summary);
 }
 
