@@ -45,7 +45,7 @@ class ShowCard extends StatelessWidget {
               Container(
                 //color: Colors.blue,
                 margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
-                width: MediaQuery.of(context).size.width/3.2,
+                width: MediaQuery.of(context).size.width/3.5,
                 height: MediaQuery.of(context).size.height,
                 child: Material(
                   color: Colors.transparent,
@@ -63,6 +63,8 @@ class ShowCard extends StatelessWidget {
                       Material(
                         color: Colors.transparent,
                         child: InkWell(
+                          splashColor: const Color(0x20EEEEEE),
+                          highlightColor: const Color(0x35EEEEEE),
                           borderRadius: BorderRadius.circular(6),
                           onTap: () {},
                         ),
