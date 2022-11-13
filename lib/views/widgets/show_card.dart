@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ShowCard extends StatelessWidget {
   final String title;
@@ -16,6 +17,7 @@ class ShowCard extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    CachedNetworkImage.logLevel = CacheManagerLogLevel.debug;
     return SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height/4.15,
@@ -48,7 +50,7 @@ class ShowCard extends StatelessWidget {
                   ClipRRect(
                       borderRadius: BorderRadius.circular(6),
                       child: Image(
-                          image: NetworkImage(thumbnailUrl),
+                          image: CachedNetworkImageProvider(thumbnailUrl),
                           fit: BoxFit.fill
                       )
                   )
