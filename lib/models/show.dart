@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:developer' as developer;
-
 import 'package:progetto_esame/models/show.api.dart';
 
 class Show {
@@ -8,7 +5,7 @@ class Show {
     final String image;
     final int id;
     final List<String> genres;
-    final num rating;
+    final String rating;
     final int duration;
     final String summary;
 

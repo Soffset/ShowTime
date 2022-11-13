@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:http/http.dart' as http;
 import 'package:progetto_esame/models/show.dart';
-import 'dart:developer' as developer;
 
 class ShowApi {
   static Future<List<Show>> getShow() async {
@@ -18,10 +16,10 @@ class ShowApi {
       List<String> genres = [];
       var s = TmpShow(
         i['name'],
-        i['image']['original'],
+        i['image']['medium'],
         i['id'],
         genres,
-        checkDouble(i['rating']['average']),
+        ratingToString(i['rating']['average']),
         i['averageRuntime'],
         formatString(i['summary']),);
       _temp.add(s);
@@ -30,13 +28,11 @@ class ShowApi {
     return Show.showsFromSnapshot(await _temp);
   }
 
-  static num checkDouble(dynamic value) {
-    if (value is String) {
-      return num.parse(value);
-    } else if(value == null){
-      return -1;
+  static String ratingToString(dynamic value) {
+    if(value == null){
+      return "N/A";
     } else {
-      return value;
+      return value.toString();
     }
   }
 
@@ -44,6 +40,7 @@ class ShowApi {
     String formatted = str;
     formatted = formatted.replaceAll ("<p>", "").replaceAll ("</p>", "");
     formatted = formatted.replaceAll ("<b>", "").replaceAll ("</b>", "");
+    formatted = formatted.replaceAll ("<i>", "").replaceAll ("</i>", "");
     return formatted;
   }
 }
@@ -53,7 +50,7 @@ class TmpShow {
   String image;
   int id;
   List<String> genres;
-  num rating;
+  String rating;
   int duration;
   String summary;
   TmpShow(this.name, this.image, this.id, this.genres, this.rating, this.duration, this.summary);
