@@ -22,7 +22,7 @@ class ShowCard extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height/4.15,
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+          margin: const EdgeInsets.symmetric(horizontal: 11, vertical: 5),
           width: double.infinity,
           height: double.infinity,
           decoration: BoxDecoration(
@@ -46,14 +46,13 @@ class ShowCard extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
                   width: MediaQuery.of(context).size.width/3.2,
                   height: MediaQuery.of(context).size.height,
-                  child:
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(6),
-                      child: Image(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(6),
+                    child: Image (
                           image: CachedNetworkImageProvider(thumbnailUrl),
-                          fit: BoxFit.fill
-                      )
-                  )
+                          fit: BoxFit.cover,
+                    ),
+                  ),
               ),
               Expanded(
                   flex: 1,
