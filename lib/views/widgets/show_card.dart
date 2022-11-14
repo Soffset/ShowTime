@@ -29,7 +29,7 @@ class ShowCard extends StatelessWidget {
           decoration: BoxDecoration(
             //color: Color(0xff525151),
             //color: Color(0xff3d3d3d),
-            color: Colors.black54,
+            color: Colors.grey[800],
             borderRadius: BorderRadius.circular(6),
             boxShadow: [
               BoxShadow(
@@ -231,7 +231,7 @@ class DetailsPage extends StatelessWidget {
                   textStyle: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 32,
-                    color: textBlack,
+                    //color: textBlack,
                   )
               ),
               overflow: TextOverflow.ellipsis,

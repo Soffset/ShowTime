@@ -2,25 +2,51 @@ import 'package:flutter/material.dart';
 import 'package:progetto_esame/views/widgets/home.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+
+  MyApp({Key? key}) : super(key: key);
+  final _light = true;
+  final ThemeData _darkTheme = ThemeData(
+    brightness: Brightness.dark,
+    primaryColor: Colors.amber,
+    colorScheme: ColorScheme.fromSwatch(
+      brightness: Brightness.dark,
+    ).copyWith(secondary: Colors.red),
+    textTheme: const TextTheme(
+      bodyText1: TextStyle(),
+      bodyText2: TextStyle(),
+    ).apply(
+      bodyColor: Colors.white,
+      displayColor: Colors.white,
+    ),
+  );
+
+  final ThemeData _lightTheme = ThemeData(
+      brightness: Brightness.light,
+      primaryColor: Colors.purple,
+      colorScheme: ColorScheme.fromSwatch(
+        brightness: Brightness.light,
+        primarySwatch: Colors.purple,
+      ).copyWith(secondary: Colors.pink),
+    textTheme: const TextTheme(
+      bodyText1: TextStyle(),
+      bodyText2: TextStyle(),
+    ).apply(
+      bodyColor: Colors.black87,
+      displayColor: Colors.black87,
+    ),
+  );
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Lista films',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-        primaryColor: Colors.white,
-        textTheme: const TextTheme(
-          bodyText2: TextStyle( color: Colors.white ),
-        ),
-      ),
+        theme: _lightTheme,
+        title: 'Material App',
+        darkTheme: _darkTheme,
 
       home: const HomePage(),
     );

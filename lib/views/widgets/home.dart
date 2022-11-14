@@ -7,12 +7,13 @@ class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
   List<Show> _shows = [];
   bool _isLoading = true;
+
 
   @override
   void initState() {
@@ -37,13 +38,13 @@ class _HomePageState extends State<HomePage> {
             children: const [
               Icon(Icons.movie_rounded),
               SizedBox(width: 10),
-              Text('Shows')
+              Text('Shows'),
             ],
           ),
         ),
         body: Material(
           //color: Colors.black87,
-          color: Color(0xff3d3d3d),
+          //color: Color(0xff3d3d3d),
           child: _isLoading
               ? const Center(child: CircularProgressIndicator())
               : ListView.builder(
