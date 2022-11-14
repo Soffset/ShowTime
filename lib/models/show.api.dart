@@ -10,7 +10,7 @@ class ShowApi {
 
     List data = await jsonDecode(response.body);
 
-    List _temp = [];
+    List temp = [];
 
     for (var i in data) {
       List<String> genres = [];
@@ -21,11 +21,12 @@ class ShowApi {
         genres,
         ratingToString(i['rating']['average']),
         i['averageRuntime'],
-        formatString(i['summary']),);
-      _temp.add(s);
+        formatString(i['summary']),
+        i['image']['original'],);
+      temp.add(s);
     }
 
-    return Show.showsFromSnapshot(await _temp);
+    return Show.showsFromSnapshot(temp);
   }
 
   static String ratingToString(dynamic value) {
@@ -53,6 +54,7 @@ class TmpShow {
   String rating;
   int duration;
   String summary;
-  TmpShow(this.name, this.image, this.id, this.genres, this.rating, this.duration, this.summary);
+  String fullImage;
+  TmpShow(this.name, this.image, this.id, this.genres, this.rating, this.duration, this.summary, this.fullImage);
 }
 

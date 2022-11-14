@@ -4,6 +4,8 @@ import 'package:progetto_esame/models/show.dart';
 import 'package:progetto_esame/views/widgets/show_card.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -49,7 +51,8 @@ class _HomePageState extends State<HomePage> {
                 duration: _shows[index].duration.toString(),
                 rating: _shows[index].rating.toString(),
                 thumbnailUrl: _shows[index].image,
-                summary: _shows[index].summary.toString());
+                summary: _shows[index].summary.toString(),
+                fullImage: _shows[index].fullImage.toString(),);
           },
         ));
   }

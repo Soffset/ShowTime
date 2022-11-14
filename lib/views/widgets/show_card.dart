@@ -8,12 +8,14 @@ class ShowCard extends StatelessWidget {
   final String duration;
   final String thumbnailUrl;
   final String summary;
+  final String fullImage;
   const ShowCard({Key? key,
     required this.title,
     required this.duration,
     required this.rating,
     required this.thumbnailUrl,
-    required this.summary
+    required this.summary,
+    required this.fullImage,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -66,7 +68,12 @@ class ShowCard extends StatelessWidget {
                           splashColor: const Color(0x20EEEEEE),
                           highlightColor: const Color(0x35EEEEEE),
                           borderRadius: BorderRadius.circular(6),
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => DetailsPage(title: title, summary: summary, fullImage: fullImage,)),
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -181,6 +188,59 @@ class ShowCard extends StatelessWidget {
           ),
         ),
     );
+  }
+}
 
+class DetailsPage extends StatelessWidget {
+  final String title;
+  final String summary;
+  final String fullImage;
+  const DetailsPage({
+    Key? key,
+    required this.title,
+    required this.summary,
+    required this.fullImage,
+  }) : super(key: key);
+
+  final Color textBlack = const Color(0xff3a3a3a);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height/2.5,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.35), BlendMode.multiply),
+                image: CachedNetworkImageProvider(fullImage),
+                fit: BoxFit.cover,
+                alignment: Alignment.topLeft,
+                ),
+              ),
+            ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            child: Text(
+              title,
+              style: GoogleFonts.roboto(
+                  textStyle: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 32,
+                    color: textBlack,
+                  )
+              ),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 4,
+              textAlign: TextAlign.left,
+            ),
+          ),
+
+        ],
+      )
+    );
   }
 }
