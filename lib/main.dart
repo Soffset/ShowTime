@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Lista films',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.purple,
         primaryColor: Colors.white,
         textTheme: const TextTheme(
           bodyText2: TextStyle( color: Colors.white ),

@@ -22,13 +22,14 @@ class ShowCard extends StatelessWidget {
     CachedNetworkImage.logLevel = CacheManagerLogLevel.debug;
     return SizedBox(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height/4.15,
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 11, vertical: 5),
           width: double.infinity,
-          height: double.infinity,
+          height: (MediaQuery.of(context).size.width * 0.32015) * 1.45,
           decoration: BoxDecoration(
-            color: const Color(0xff48495B),
+            //color: Color(0xff525151),
+            //color: Color(0xff3d3d3d),
+            color: Colors.black54,
             borderRadius: BorderRadius.circular(6),
             boxShadow: [
               BoxShadow(
@@ -47,8 +48,8 @@ class ShowCard extends StatelessWidget {
               Container(
                 //color: Colors.blue,
                 margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
-                width: MediaQuery.of(context).size.width/3.5,
-                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width * 0.32015,
+                height: double.infinity,
                 child: Material(
                   color: Colors.transparent,
                   child: Stack(
@@ -238,7 +239,27 @@ class DetailsPage extends StatelessWidget {
               textAlign: TextAlign.left,
             ),
           ),
-
+          Container(
+            color: Colors.greenAccent,
+            width: MediaQuery.of(context).size.width,
+            margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+            child: Text(
+              summary,
+              style: GoogleFonts.roboto(
+                  textStyle: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                    color: textBlack,
+                  ),
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ),
+          Expanded(child: Container(
+            color: Colors.blue,
+            child: ElevatedButton (onPressed: (){ Navigator.pop(context); }, child: const Text('back'),),
+          ),
+          ),
         ],
       )
     );

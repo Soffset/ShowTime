@@ -41,19 +41,25 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        body: _isLoading
-            ? const Center(child: CircularProgressIndicator())
-            : ListView.builder(
-          itemCount: _shows.length,
-          itemBuilder: (context, index) {
-            return ShowCard(
+        body: Material(
+          //color: Colors.black87,
+          color: Color(0xff3d3d3d),
+          child: _isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : ListView.builder(
+            itemCount: _shows.length,
+            itemBuilder: (context, index) {
+              return ShowCard(
                 title: _shows[index].name,
                 duration: _shows[index].duration.toString(),
                 rating: _shows[index].rating.toString(),
                 thumbnailUrl: _shows[index].image,
                 summary: _shows[index].summary.toString(),
-                fullImage: _shows[index].fullImage.toString(),);
-          },
-        ));
+                fullImage: _shows[index].fullImage.toString(),
+              );
+            },
+          ),
+        ),
+    );
   }
 }
