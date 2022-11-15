@@ -27,6 +27,8 @@ class MyApp extends StatelessWidget {
   final ThemeData _lightTheme = ThemeData(
       brightness: Brightness.light,
       primaryColor: Colors.purple,
+      backgroundColor: Colors.red,
+      cardColor: Color(0xffd5dae0),
       colorScheme: ColorScheme.fromSwatch(
         brightness: Brightness.light,
         primarySwatch: Colors.purple,
@@ -45,7 +47,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: _lightTheme,
-        title: 'Material App',
+        title: 'Shows',
         darkTheme: _darkTheme,
 
       home: const HomePage(),

@@ -23,65 +23,71 @@ class ShowCard extends StatelessWidget {
     return SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 11, vertical: 5),
+          //margin: const EdgeInsets.symmetric(horizontal: 11, vertical: 5),
           width: double.infinity,
-          height: (MediaQuery.of(context).size.width * 0.32015) * 1.45,
+          height: (MediaQuery.of(context).size.width * 0.32015) * 1.58,
+          margin: const EdgeInsets.symmetric(horizontal: 9, vertical: 4.5),
           decoration: BoxDecoration(
             //color: Color(0xff525151),
             //color: Color(0xff3d3d3d),
-            color: Colors.grey[800],
             borderRadius: BorderRadius.circular(6),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.4),
                 offset: const Offset(
                   0.0,
-                  7.0,
+                  4.0,
                 ),
-                blurRadius: 8.0,
-                spreadRadius: -6.0,
+                blurRadius: 7.0,
+                spreadRadius: -8.0,
               ),
             ],
           ),
-          child: Row(
-            children: [
-              Container(
-                //color: Colors.blue,
-                margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
-                width: MediaQuery.of(context).size.width * 0.32015,
-                height: double.infinity,
-                child: Material(
-                  color: Colors.transparent,
-                  child: Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(6),
-                        child: Image(
-                          image: CachedNetworkImageProvider(thumbnailUrl),
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                          height: double.infinity,
-                        ),
-                      ),
-                      Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          splashColor: const Color(0x20EEEEEE),
-                          highlightColor: const Color(0x35EEEEEE),
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(6),
+            ),
+            margin: const EdgeInsets.all(0),
+            elevation: 1,
+            child: Row(
+              children: [
+                Container(
+                  //color: Colors.blue,
+                  margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
+                  width: MediaQuery.of(context).size.width * 0.32015,
+                  height: double.infinity,
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Stack(
+                      children: [
+                        ClipRRect(
                           borderRadius: BorderRadius.circular(6),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => DetailsPage(title: title, summary: summary, fullImage: fullImage,)),
-                            );
-                          },
+                          child: Image(
+                            image: CachedNetworkImageProvider(thumbnailUrl),
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: double.infinity,
+                          ),
                         ),
-                      ),
-                    ],
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            splashColor: const Color(0x20EEEEEE),
+                            highlightColor: const Color(0x35EEEEEE),
+                            borderRadius: BorderRadius.circular(6),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => DetailsPage(title: title, summary: summary, fullImage: fullImage,)),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
+                Expanded(
                   flex: 1,
                   child: Column(
                     children:[
@@ -153,7 +159,10 @@ class ShowCard extends StatelessWidget {
                                       size: 18,
                                     ),
                                     const SizedBox(width: 7),
-                                    Text(rating),
+                                    Text(
+                                        rating,
+                                        style: const TextStyle(color: Colors.white),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -172,7 +181,10 @@ class ShowCard extends StatelessWidget {
                                       size: 18,
                                     ),
                                     const SizedBox(width: 7),
-                                    Text(duration),
+                                    Text(
+                                      duration,
+                                      style: const TextStyle(color: Colors.white),
+                                    ),
                                   ],
                                 ),
                               )
@@ -183,9 +195,10 @@ class ShowCard extends StatelessWidget {
                       ),
                     ],
                   ),
-              )
+                )
 
-            ],
+              ],
+            ),
           ),
         ),
     );
