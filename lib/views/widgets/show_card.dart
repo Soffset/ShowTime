@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:progetto_esame/views/widgets/details.dart';
 
 class ShowCard extends StatelessWidget {
   final String title;
@@ -201,80 +202,6 @@ class ShowCard extends StatelessWidget {
             ),
           ),
         ),
-    );
-  }
-}
-
-class DetailsPage extends StatelessWidget {
-  final String title;
-  final String summary;
-  final String fullImage;
-  const DetailsPage({
-    Key? key,
-    required this.title,
-    required this.summary,
-    required this.fullImage,
-  }) : super(key: key);
-
-  final Color textBlack = const Color(0xff3a3a3a);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height/2.5,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.35), BlendMode.multiply),
-                image: CachedNetworkImageProvider(fullImage),
-                fit: BoxFit.cover,
-                alignment: Alignment.topLeft,
-                ),
-              ),
-            ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            child: Text(
-              title,
-              style: GoogleFonts.roboto(
-                  textStyle: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 32,
-                    //color: textBlack,
-                  )
-              ),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 4,
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Container(
-            color: Colors.greenAccent,
-            width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-            child: Text(
-              summary,
-              style: GoogleFonts.roboto(
-                  textStyle: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 20,
-                    color: textBlack,
-                  ),
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Expanded(child: Container(
-            color: Colors.blue,
-            child: ElevatedButton (onPressed: (){ Navigator.pop(context); }, child: const Text('back'),),
-          ),
-          ),
-        ],
-      )
     );
   }
 }
