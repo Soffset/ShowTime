@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:progetto_esame/views/widgets/details.dart';
+import 'package:progetto_esame/views/widgets/card_thumbnail.dart';
 
 class ShowCard extends StatelessWidget {
   final String title;
@@ -24,13 +25,10 @@ class ShowCard extends StatelessWidget {
     return SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Container(
-          //margin: const EdgeInsets.symmetric(horizontal: 11, vertical: 5),
           width: double.infinity,
           height: (MediaQuery.of(context).size.width * 0.32015) * 1.58,
           margin: const EdgeInsets.symmetric(horizontal: 9, vertical: 4.5),
           decoration: BoxDecoration(
-            //color: Color(0xff525151),
-            //color: Color(0xff3d3d3d),
             borderRadius: BorderRadius.circular(6),
             boxShadow: [
               BoxShadow(
@@ -53,7 +51,6 @@ class ShowCard extends StatelessWidget {
             child: Row(
               children: [
                 Container(
-                  //color: Colors.blue,
                   margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
                   width: MediaQuery.of(context).size.width * 0.32015,
                   height: double.infinity,
@@ -66,7 +63,6 @@ class ShowCard extends StatelessWidget {
                       Align(
                         alignment: Alignment.center,
                         child: Container (
-                          //color: Colors.red,//debug
                           margin: const EdgeInsets.fromLTRB(2, 8, 0, 5),
                           width: double.infinity,
                           child: Text(
@@ -87,10 +83,8 @@ class ShowCard extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Container (
-                          //color: Colors.amberAccent,
                           margin: const EdgeInsets.fromLTRB(3, 2, 10, 7),
                           width: double.infinity,
-                          //color: Colors.red,
                           child: Text(
                             summary,
                             style: GoogleFonts.roboto(
@@ -110,7 +104,6 @@ class ShowCard extends StatelessWidget {
                       Align(
                         alignment: Alignment.bottomLeft,
                         child: Container(
-                          //color: Colors.greenAccent,
                           margin: const EdgeInsets.fromLTRB(1, 0, 7, 0),
                           width: double.infinity,
                           child: Row(
@@ -175,52 +168,4 @@ class ShowCard extends StatelessWidget {
         ),
     );
   }
-}
-
-class CardThumbnail extends StatelessWidget{
-  final String thumbnailUrl;
-  final ShowCard parentCard;
-
-  const CardThumbnail({Key? key,
-    required this.thumbnailUrl,
-    required this.parentCard,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Material(
-      color: Colors.transparent,
-      child: Stack(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: Image(
-              image: CachedNetworkImageProvider(thumbnailUrl),
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: double.infinity,
-            ),
-          ),
-          Material(
-            color: Colors.transparent,
-            child: InkWell(
-              splashColor: const Color(0x20EEEEEE),
-              highlightColor: const Color(0x35EEEEEE),
-              borderRadius: BorderRadius.circular(6),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => DetailsPage(title: parentCard.title, summary: parentCard.summary, fullImage: parentCard.fullImage,)),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-
-    throw UnimplementedError();
-  }
-
 }

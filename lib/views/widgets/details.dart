@@ -53,9 +53,7 @@ class DetailsPage extends StatelessWidget {
             ),
             SliverToBoxAdapter(
               child: Container(
-                //color: Colors.greenAccent,
                 width: MediaQuery.of(context).size.width,
-                //margin: const EdgeInsets.fromLTRB(17, 20, 17, 20),
                 child: Container(
                   color: Colors.red,
                 ),
@@ -63,9 +61,7 @@ class DetailsPage extends StatelessWidget {
             ),
             SliverToBoxAdapter(
               child: Container(
-                //color: Colors.greenAccent,
                 width: MediaQuery.of(context).size.width,
-                //margin: const EdgeInsets.fromLTRB(18, 20, 18, 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -100,61 +96,6 @@ class DetailsPage extends StatelessWidget {
             ),
           ],
         ),
-
-        /*Column(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height/2.5,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.35), BlendMode.multiply),
-                  image: CachedNetworkImageProvider(fullImage),
-                  fit: BoxFit.cover,
-                  alignment: Alignment.topLeft,
-                ),
-              ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              child: Text(
-                title,
-                style: GoogleFonts.roboto(
-                    textStyle: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 32,
-                      //color: textBlack,
-                    )
-                ),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 4,
-                textAlign: TextAlign.left,
-              ),
-            ),
-            Container(
-              color: Colors.greenAccent,
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-              child: Text(
-                summary,
-                style: GoogleFonts.roboto(
-                  textStyle: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 20,
-                    color: textBlack,
-                  ),
-                ),
-                textAlign: TextAlign.left,
-              ),
-            ),
-            Expanded(child: Container(
-              color: Colors.blue,
-              child: ElevatedButton (onPressed: (){ Navigator.pop(context); }, child: const Text('back'),),
-            ),
-            ),
-          ],
-        ),*/
     );
   }
 }
