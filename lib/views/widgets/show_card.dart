@@ -57,36 +57,7 @@ class ShowCard extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
                   width: MediaQuery.of(context).size.width * 0.32015,
                   height: double.infinity,
-                  child: Material(
-                    color: Colors.transparent,
-                    child: Stack(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(6),
-                          child: Image(
-                            image: CachedNetworkImageProvider(thumbnailUrl),
-                            fit: BoxFit.cover,
-                            width: double.infinity,
-                            height: double.infinity,
-                          ),
-                        ),
-                        Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            splashColor: const Color(0x20EEEEEE),
-                            highlightColor: const Color(0x35EEEEEE),
-                            borderRadius: BorderRadius.circular(6),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => DetailsPage(title: title, summary: summary, fullImage: fullImage,)),
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  child: CardThumbnail( thumbnailUrl: thumbnailUrl, parentCard: this, ),
                 ),
                 Expanded(
                   flex: 1,
@@ -204,4 +175,52 @@ class ShowCard extends StatelessWidget {
         ),
     );
   }
+}
+
+class CardThumbnail extends StatelessWidget{
+  final String thumbnailUrl;
+  final ShowCard parentCard;
+
+  const CardThumbnail({Key? key,
+    required this.thumbnailUrl,
+    required this.parentCard,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Material(
+      color: Colors.transparent,
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(6),
+            child: Image(
+              image: CachedNetworkImageProvider(thumbnailUrl),
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
+            ),
+          ),
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              splashColor: const Color(0x20EEEEEE),
+              highlightColor: const Color(0x35EEEEEE),
+              borderRadius: BorderRadius.circular(6),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DetailsPage(title: parentCard.title, summary: parentCard.summary, fullImage: parentCard.fullImage,)),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+
+    throw UnimplementedError();
+  }
+
 }
