@@ -11,6 +11,7 @@ class ShowCard extends StatelessWidget {
   final String thumbnailUrl;
   final String summary;
   final String fullImage;
+  final List<String> genres;
   const ShowCard({Key? key,
     required this.title,
     required this.duration,
@@ -18,6 +19,7 @@ class ShowCard extends StatelessWidget {
     required this.thumbnailUrl,
     required this.summary,
     required this.fullImage,
+    required this.genres,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -178,8 +180,10 @@ class ShowCard extends StatelessWidget {
   void openDetails( BuildContext context, [details] ){
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => DetailsPage(title: title, summary: summary, fullImage: fullImage,)),
+      MaterialPageRoute(builder: (context) => DetailsPage(title: title, summary: summary, fullImage: fullImage, genres: genres,)),
     );
   }
+
+
 
 }

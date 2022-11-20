@@ -6,11 +6,13 @@ class DetailsPage extends StatelessWidget {
   final String title;
   final String summary;
   final String fullImage;
+  final List<String> genres;
   const DetailsPage({
     Key? key,
     required this.title,
     required this.summary,
     required this.fullImage,
+    required this.genres,
   }) : super(key: key);
 
   final Color textBlack = const Color(0xff3a3a3a);
@@ -54,8 +56,35 @@ class DetailsPage extends StatelessWidget {
             SliverToBoxAdapter(
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                child: Container(
-                  color: Colors.red,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.fromLTRB( 18, 20, 18, 9 ),
+                      child: const Text(
+                        'Genres',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          height: 1.2,
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.fromLTRB( 18, 0, 18, 0 ),
+                      child: Text(
+                        genres.join(", "),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          height: 1.2,
+                          fontSize: 16,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+
+                  ],
                 ),
               ),
             ),
@@ -66,7 +95,7 @@ class DetailsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      margin: const EdgeInsets.fromLTRB(18, 20, 18, 9),
+                      margin: const EdgeInsets.fromLTRB(18, 15, 18, 9),
                       child: const Text(
                         'Summary',
                         style: TextStyle(
@@ -92,6 +121,13 @@ class DetailsPage extends StatelessWidget {
 
                   ],
                 ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                color: Colors.purple,
               ),
             ),
           ],

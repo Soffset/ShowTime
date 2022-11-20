@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         theme: _lightTheme,
         title: 'Shows',
-        //darkTheme: _darkTheme,
+        darkTheme: _darkTheme,
 
       home: const HomePage(),
     );

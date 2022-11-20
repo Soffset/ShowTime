@@ -38,7 +38,7 @@ class CardThumbnail extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => DetailsPage(title: parentCard.title, summary: parentCard.summary, fullImage: parentCard.fullImage,)),
+                  MaterialPageRoute(builder: (context) => DetailsPage(title: parentCard.title, summary: parentCard.summary, fullImage: parentCard.fullImage, genres: parentCard.genres,)),
                 );
               },
             ),

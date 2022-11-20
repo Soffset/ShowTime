@@ -4,7 +4,7 @@ class Show {
     final String name;
     final String image;
     final int id;
-    //final List<String> genres;
+    final List<String> genres;
     final String rating;
     final int duration;
     final String summary;
@@ -14,7 +14,7 @@ class Show {
       required this.name,
       required this.image,
       required this.id,
-      //required this.genres,
+      required this.genres,
       required this.rating,
       required this.duration,
       required this.summary,
@@ -25,7 +25,7 @@ class Show {
         name: showJson['name'],
         image: showJson['image']['medium'],
         id: showJson['id'],
-        //genres: showJson['genres'],
+        genres: (showJson["genres"] as List).map((e) => e as String).toList(),
         rating: showJson['rating']['average'].toString(),
         duration: showJson['averageRuntime'],
         summary: formatString( showJson['summary'] ),

@@ -54,6 +54,7 @@ class HomePageState extends State<HomePage> {
                 thumbnailUrl: _shows[index].image,
                 summary: _shows[index].summary.toString(),
                 fullImage: _shows[index].fullImage.toString(),
+                genres: _shows[index].genres,
               );
             },
           ),
