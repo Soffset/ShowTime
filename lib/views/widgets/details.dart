@@ -21,6 +21,11 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        //backgroundColor: Colors.red,
+        toolbarHeight: 0,
+        shadowColor: Colors.transparent,// Status bar color
+      ),
       body: SafeArea(
         child: CustomScrollView(
           slivers: <Widget>[
@@ -122,14 +127,13 @@ class DetailsAppBar extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return SafeArea(
-      child: Material(
-        color: Theme.of(context).primaryColor,
-        child: Stack(
-          children: [
-            shrinkOffset < (_maxExtent - kToolbarHeight)
-                ? Container(
-                    decoration: BoxDecoration(
+    return Material(
+          color: Theme.of(context).primaryColor,
+          child: Stack(
+            children: [
+              shrinkOffset < (_maxExtent - kToolbarHeight)
+                  ? Container(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
                       colorFilter: ColorFilter.mode(
                           Colors.black.withOpacity(0.6), BlendMode.multiply),
@@ -137,54 +141,54 @@ class DetailsAppBar extends SliverPersistentHeaderDelegate {
                       fit: BoxFit.cover,
                     ),
                   ))
-                : Container(),
-            Align(
-              alignment: Alignment(
-                  -1, shrinkOffset > (_maxExtent - kToolbarHeight) ? 0 : -1),
-              child: Material(
-                color: Colors.transparent,
-                child: IconButton(
-                  color: Theme.of(context).textTheme.bodyText1!.color,
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+                  : Container(),
+              Align(
+                alignment: Alignment(
+                    -1, shrinkOffset > (_maxExtent - kToolbarHeight) ? 0 : -1),
+                child: Material(
+                  color: Colors.transparent,
+                  child: IconButton(
+                    color: Theme.of(context).textTheme.bodyText1!.color,
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
                 ),
               ),
-            ),
-            Align(
-              alignment: Alignment(
-                  0, shrinkOffset > (_maxExtent - kToolbarHeight) ? 0 : 0.8),
-              child: Text(
-                title,
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyText1!.color,
-                  fontWeight: FontWeight.w400,
-                  height: 1.2,
-                  fontSize: 21,
+              Align(
+                alignment: Alignment(
+                    0, shrinkOffset > (_maxExtent - kToolbarHeight) ? 0 : 0.8),
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyText1!.color,
+                    fontWeight: FontWeight.w400,
+                    height: 1.2,
+                    fontSize: 21,
+                  ),
+                  textAlign: TextAlign.left,
                 ),
-                textAlign: TextAlign.left,
               ),
-            ),
 
-            // here provide actions
-            Align(
-              alignment: Alignment( 1, shrinkOffset > (_maxExtent - kToolbarHeight) ? 0 : -1 ),
-              child: Material(
-                color: Colors.transparent,
-                child: IconButton(
-                  color: Theme.of(context).textTheme.bodyText1!.color,
-                  icon: const Icon(Icons.star_border),
-                  onPressed: () {
-                    debugPrint('fav pressed');
-                  },
+              // here provide actions
+              Align(
+                alignment: Alignment( 1, shrinkOffset > (_maxExtent - kToolbarHeight) ? 0 : -1 ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: IconButton(
+                    color: Theme.of(context).textTheme.bodyText1!.color,
+                    icon: const Icon(Icons.star_border),
+                    onPressed: () {
+                      debugPrint('fav pressed');
+                    },
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
-    );
+            ],
+          ),
+        );
+
   }
 
   @override
