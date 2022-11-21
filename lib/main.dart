@@ -16,12 +16,9 @@ class MyApp extends StatelessWidget {
       brightness: Brightness.dark,
     ).copyWith(secondary: Colors.red),
     textTheme: const TextTheme(
-      bodyText1: TextStyle(),
-      bodyText2: TextStyle(),
-    ).apply(
-      bodyColor: Colors.white,
-      displayColor: Colors.white,
-    ),
+      bodyText1: TextStyle( color: Colors.white,),
+      bodyText2: TextStyle( color: Colors.black87,),
+    )
   );
 
   final ThemeData _lightTheme = ThemeData(
@@ -34,12 +31,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
       ).copyWith(secondary: Colors.pink),
     textTheme: const TextTheme(
-      bodyText1: TextStyle(),
-      bodyText2: TextStyle(),
-    ).apply(
-      bodyColor: Colors.black87,
-      displayColor: Colors.black87,
+      bodyText1: TextStyle( color: Colors.white),
+      bodyText2: TextStyle( color: Colors.black87 ),
     ),
+
   );
 
   // This widget is the root of your application.

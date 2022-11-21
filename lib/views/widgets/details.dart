@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'dart:math';
 
 class DetailsPage extends StatelessWidget {
   final String title;
@@ -20,38 +21,12 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: CustomScrollView(
+      body: SafeArea(
+        child: CustomScrollView(
           slivers: <Widget>[
-            SliverAppBar(
+            SliverPersistentHeader(
               pinned: true,
-              expandedHeight: 280.0,
-              flexibleSpace: FlexibleSpaceBar(
-                centerTitle: false,
-                titlePadding: EdgeInsets.fromLTRB(20, 0, 0, 10),
-                background: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.70), BlendMode.multiply),
-                      image: CachedNetworkImageProvider(fullImage),
-                      fit: BoxFit.cover,
-                      alignment: Alignment.topLeft,
-                    ),
-                  ),
-                ),
-                title: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Container(
-                    child: Text(
-                      title,
-                      style: const TextStyle(
-                        color: Colors.white,
-                      ),
-
-                    ),
-                  ),
-                ),
-
-              ),
+              delegate: DetailsAppBar(bgImage: fullImage, title: title),
             ),
             SliverToBoxAdapter(
               child: Container(
@@ -60,7 +35,7 @@ class DetailsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      margin: const EdgeInsets.fromLTRB( 18, 20, 18, 9 ),
+                      margin: const EdgeInsets.fromLTRB(18, 20, 18, 9),
                       child: const Text(
                         'Genres',
                         style: TextStyle(
@@ -72,7 +47,7 @@ class DetailsPage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.fromLTRB( 18, 0, 18, 0 ),
+                      margin: const EdgeInsets.fromLTRB(18, 0, 18, 0),
                       child: Text(
                         genres.join(", "),
                         style: const TextStyle(
@@ -83,7 +58,6 @@ class DetailsPage extends StatelessWidget {
                         textAlign: TextAlign.left,
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -107,7 +81,7 @@ class DetailsPage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.fromLTRB(18,0,18,20),
+                      margin: const EdgeInsets.fromLTRB(18, 0, 18, 20),
                       child: Text(
                         summary,
                         style: const TextStyle(
@@ -118,7 +92,6 @@ class DetailsPage extends StatelessWidget {
                         textAlign: TextAlign.left,
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -132,6 +105,96 @@ class DetailsPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
     );
+  }
+}
+
+class DetailsAppBar extends SliverPersistentHeaderDelegate {
+  final double _maxExtent = 270;
+  final String bgImage;
+  final String title;
+  var rng = Random();
+  DetailsAppBar({
+    required this.bgImage,
+    required this.title,
+  });
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return SafeArea(
+      child: Material(
+        color: Theme.of(context).primaryColor,
+        child: Stack(
+          children: [
+            shrinkOffset < (_maxExtent - kToolbarHeight)
+                ? Container(
+                    decoration: BoxDecoration(
+                    image: DecorationImage(
+                      colorFilter: ColorFilter.mode(
+                          Colors.black.withOpacity(0.6), BlendMode.multiply),
+                      image: NetworkImage(bgImage),
+                      fit: BoxFit.cover,
+                    ),
+                  ))
+                : Container(),
+            Align(
+              alignment: Alignment(
+                  -1, shrinkOffset > (_maxExtent - kToolbarHeight) ? 0 : -1),
+              child: Material(
+                color: Colors.transparent,
+                child: IconButton(
+                  color: Theme.of(context).textTheme.bodyText1!.color,
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment(
+                  0, shrinkOffset > (_maxExtent - kToolbarHeight) ? 0 : 0.8),
+              child: Text(
+                title,
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.bodyText1!.color,
+                  fontWeight: FontWeight.w400,
+                  height: 1.2,
+                  fontSize: 21,
+                ),
+                textAlign: TextAlign.left,
+              ),
+            ),
+
+            // here provide actions
+            Align(
+              alignment: Alignment( 1, shrinkOffset > (_maxExtent - kToolbarHeight) ? 0 : -1 ),
+              child: Material(
+                color: Colors.transparent,
+                child: IconButton(
+                  color: Theme.of(context).textTheme.bodyText1!.color,
+                  icon: const Icon(Icons.star_border),
+                  onPressed: () {
+                    debugPrint('fav pressed');
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  double get maxExtent => _maxExtent;
+
+  @override
+  double get minExtent => kToolbarHeight;
+
+  @override
+  bool shouldRebuild(covariant DetailsAppBar oldDelegate) {
+    return oldDelegate != this;
   }
 }
