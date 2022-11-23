@@ -40,16 +40,17 @@ class DetailsPage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.30,
+                    height: MediaQuery.of(context).size.height * 0.31,
                     child: Stack(
                       children: [
                         Container(
+                          height: MediaQuery.of(context).size.height * 0.29,
                           decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: CachedNetworkImageProvider(fullImage),
                                 fit: BoxFit.cover,
-                                alignment: Alignment.topCenter,
-                                //colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.30), BlendMode.multiply),
+                                alignment: Alignment.topCenter, //const Alignment(0.40, 0.0),
+                                colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.40), BlendMode.multiply),
                               )
                           ),
                         ),
@@ -57,23 +58,44 @@ class DetailsPage extends StatelessWidget {
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                                 begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [ Colors.transparent, Theme.of(context).canvasColor, ],
+                                end: const Alignment(0.0, 0.50),
+                                colors: [ Colors.transparent, Theme.of(context).backgroundColor, ],
                             ),
                           ),
                         ),
-
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height * 0.18,
+                                width: MediaQuery.of(context).size.width * 0.24,
+                                child: FilmImage(thumbnailUrl: fullImage, ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.symmetric( vertical: 8, horizontal: 0, ),
+                                child: Text(
+                                  title,
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   ),
                   Container(
-                    color: Theme.of(context).canvasColor,
+                    color: Theme.of(context).backgroundColor,
                     width: MediaQuery.of(context).size.width,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          margin: const EdgeInsets.fromLTRB(18, 20, 18, 9),
+                          margin: const EdgeInsets.fromLTRB(18, 6, 18, 9),
                           child: const Text(
                             'Genres',
                             style: TextStyle(
@@ -141,7 +163,6 @@ class DetailsPage extends StatelessWidget {
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
-                color: Theme.of(context).appBarTheme.backgroundColor,
               ),
             ),
           ],
@@ -149,4 +170,45 @@ class DetailsPage extends StatelessWidget {
       ),
     );
   }
+}
+
+class FilmImage extends StatelessWidget {
+  final String thumbnailUrl;
+
+  const FilmImage({Key? key,
+    required this.thumbnailUrl,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Material(
+      color: Colors.transparent,
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(6),
+            child: Image(
+              image: CachedNetworkImageProvider(thumbnailUrl),
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
+            ),
+          ),
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              splashColor: const Color(0x20EEEEEE),
+              highlightColor: const Color(0x35EEEEEE),
+              borderRadius: BorderRadius.circular(6),
+              onTap: () { },
+            ),
+          ),
+        ],
+      ),
+    );
+
+    throw UnimplementedError();
+  }
+
 }

@@ -13,11 +13,24 @@ class MyApp extends StatelessWidget {
     useMaterial3: true,
     brightness: Brightness.dark,
 
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: Colors.black,
+    primarySwatch: Colors.grey,
 
-      brightness: Brightness.dark,
+    appBarTheme: const AppBarTheme(
+      color: Color(0xFF0A0A0A),
+      scrolledUnderElevation: 0.0,
+      shadowColor: Colors.black,
+
     ),
+    scaffoldBackgroundColor: const Color(0xFF121212),
+    cardTheme: const CardTheme(
+      color: Color(0xFF191919),
+    ),
+    backgroundColor: const Color(0xFF121212),
+
+    //bg #1d1c1c
+    //card #191918
+    //hover #292829
+    //appbar #191918
 
     /*colorScheme: ColorScheme(
       brightness: Brightness.dark,
