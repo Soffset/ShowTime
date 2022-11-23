@@ -22,9 +22,6 @@ class DetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //backgroundColor: Colors.red,
-        //toolbarHeight: 0,
-        //shadowColor: Colors.transparent,// Status bar color
         actions: <Widget>[
           IconButton(
             icon: const Icon(
@@ -32,7 +29,6 @@ class DetailsPage extends StatelessWidget {
               color: Colors.white,
             ),
             onPressed: () {
-              // do something
             },
           )
         ],
@@ -40,12 +36,40 @@ class DetailsPage extends StatelessWidget {
       body: SafeArea(
         child: CustomScrollView(
           slivers: <Widget>[
-            /*SliverPersistentHeader(
-              pinned: true,
-              delegate: DetailsAppBar(bgImage: fullImage, title: title),
-            ),*/
+            SliverToBoxAdapter(
+              child: Material(
+                color: Colors.transparent,
+                child: Stack(
+                  children: [
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.38,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: CachedNetworkImageProvider(fullImage),
+                            fit: BoxFit.cover,
+                            alignment: Alignment.topCenter,
+                            //colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.30), BlendMode.multiply),
+                          )
+                      ),
+                    ),
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.38,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [Colors.transparent, Theme.of(context).backgroundColor, ]
+                        ),
+                      ),
+                    ),
+
+                  ],
+                ),
+              ),
+            ),
             SliverToBoxAdapter(
               child: Container(
+                color: Theme.of(context).backgroundColor,
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,100 +140,12 @@ class DetailsPage extends StatelessWidget {
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
-                color: Colors.purple,
+                color: Theme.of(context).appBarTheme.backgroundColor,
               ),
             ),
           ],
         ),
       ),
     );
-  }
-}
-
-class DetailsAppBar extends SliverPersistentHeaderDelegate {
-  final double _maxExtent = 270;
-  final String bgImage;
-  final String title;
-  var rng = Random();
-  DetailsAppBar({
-    required this.bgImage,
-    required this.title,
-  });
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Material(
-          //color: Theme.of(context).focusColor,
-          child: Stack(
-            children: [
-              shrinkOffset < (_maxExtent - kToolbarHeight)
-                  ? Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      colorFilter: ColorFilter.mode(
-                          Colors.black.withOpacity(0.6), BlendMode.multiply),
-                      image: NetworkImage(bgImage),
-                      fit: BoxFit.cover,
-                    ),
-                  ))
-                  : Container(),
-              Align(
-                alignment: Alignment(
-                    -1, shrinkOffset > (_maxExtent - kToolbarHeight) ? 0 : -1),
-                child: Material(
-                  color: Colors.transparent,
-                  child: IconButton(
-                    color: Theme.of(context).textTheme.bodyText1!.color,
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-              ),
-              Align(
-                alignment: Alignment(
-                    0, shrinkOffset > (_maxExtent - kToolbarHeight) ? 0 : 0.8),
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyText1!.color,
-                    fontWeight: FontWeight.w400,
-                    height: 1.2,
-                    fontSize: 21,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-              ),
-
-              // here provide actions
-              Align(
-                alignment: Alignment( 1, shrinkOffset > (_maxExtent - kToolbarHeight) ? 0 : -1 ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: IconButton(
-                    color: Theme.of(context).textTheme.bodyText1!.color,
-                    icon: const Icon(Icons.star_border),
-                    onPressed: () {
-                      debugPrint('fav pressed');
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-
-  }
-
-  @override
-  double get maxExtent => _maxExtent;
-
-  @override
-  double get minExtent => kToolbarHeight;
-
-  @override
-  bool shouldRebuild(covariant DetailsAppBar oldDelegate) {
-    return oldDelegate != this;
   }
 }

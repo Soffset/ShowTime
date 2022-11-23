@@ -8,23 +8,24 @@ void main() {
 class MyApp extends StatelessWidget {
 
   MyApp({Key? key}) : super(key: key);
-  final _light = true;
+
   final ThemeData _darkTheme = ThemeData(
+    useMaterial3: true,
     brightness: Brightness.dark,
-    //primaryColor: Colors.amber,
     colorScheme: ColorScheme.fromSwatch(
       brightness: Brightness.dark,
-    ).copyWith(secondary: Colors.red),
+    ).copyWith( secondary: Colors.grey ),
     textTheme: const TextTheme(
       bodyText1: TextStyle( color: Colors.white,),
       bodyText2: TextStyle( color: Colors.white,),
-    )
+    ),
   );
 
   final ThemeData _lightTheme = ThemeData(
+      useMaterial3: true,
       brightness: Brightness.light,
       primaryColor: Colors.purple,
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.grey,
       cardColor: Color(0xffd5dae0),
       colorScheme: ColorScheme.fromSwatch(
         brightness: Brightness.light,
