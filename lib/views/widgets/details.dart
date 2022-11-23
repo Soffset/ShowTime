@@ -37,70 +37,71 @@ class DetailsPage extends StatelessWidget {
         child: CustomScrollView(
           slivers: <Widget>[
             SliverToBoxAdapter(
-              child: Material(
-                color: Colors.transparent,
-                child: Stack(
-                  children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.38,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: CachedNetworkImageProvider(fullImage),
-                            fit: BoxFit.cover,
-                            alignment: Alignment.topCenter,
-                            //colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.30), BlendMode.multiply),
-                          )
-                      ),
-                    ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.38,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [Colors.transparent, Theme.of(context).backgroundColor, ]
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.30,
+                    child: Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: CachedNetworkImageProvider(fullImage),
+                                fit: BoxFit.cover,
+                                alignment: Alignment.topCenter,
+                                //colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.30), BlendMode.multiply),
+                              )
+                          ),
                         ),
-                      ),
-                    ),
+                        Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [ Colors.transparent, Theme.of(context).canvasColor, ],
+                            ),
+                          ),
+                        ),
 
-                  ],
-                ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Container(
-                color: Theme.of(context).backgroundColor,
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(18, 20, 18, 9),
-                      child: const Text(
-                        'Genres',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          height: 1.2,
-                          fontSize: 18,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
+                      ],
                     ),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(18, 0, 18, 0),
-                      child: Text(
-                        genres.join(", "),
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w400,
-                          height: 1.2,
-                          fontSize: 16,
+                  ),
+                  Container(
+                    color: Theme.of(context).canvasColor,
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(18, 20, 18, 9),
+                          child: const Text(
+                            'Genres',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              height: 1.2,
+                              fontSize: 18,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
                         ),
-                        textAlign: TextAlign.left,
-                      ),
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(18, 0, 18, 0),
+                          child: Text(
+                            genres.join(", "),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w400,
+                              height: 1.2,
+                              fontSize: 16,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+
             ),
             SliverToBoxAdapter(
               child: Container(

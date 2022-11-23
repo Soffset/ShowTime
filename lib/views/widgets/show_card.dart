@@ -126,7 +126,7 @@ class ShowCard extends StatelessWidget {
                                     children: [
                                       const Icon(
                                         Icons.star,
-                                        color: Colors.yellow,
+                                        color: Colors.white,
                                         size: 18,
                                       ),
                                       const SizedBox(width: 7),
@@ -147,8 +147,8 @@ class ShowCard extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       const Icon(
-                                        Icons.schedule,
-                                        color: Colors.blue,
+                                        Icons.hourglass_bottom_outlined,
+                                        color: Colors.white,
                                         size: 18,
                                       ),
                                       const SizedBox(width: 7),
@@ -166,7 +166,7 @@ class ShowCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                  )
+                  ),
 
                 ],
               ),

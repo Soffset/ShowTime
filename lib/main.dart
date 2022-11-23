@@ -12,30 +12,52 @@ class MyApp extends StatelessWidget {
   final ThemeData _darkTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,
-    colorScheme: ColorScheme.fromSwatch(
+
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: Colors.black,
+
       brightness: Brightness.dark,
-    ).copyWith( secondary: Colors.grey ),
-    textTheme: const TextTheme(
-      bodyText1: TextStyle( color: Colors.white,),
-      bodyText2: TextStyle( color: Colors.white,),
     ),
+
+    /*colorScheme: ColorScheme(
+      brightness: Brightness.dark,
+      primary: Colors.grey.shade900,
+      onPrimary: Colors.white,
+      secondary: Colors.grey.shade800,
+      onSecondary: Colors.white,
+      primaryContainer: Colors.grey.shade900,
+      error: Colors.black,
+      onError: Colors.white,
+      background: Colors.grey.shade800,
+      onBackground: Colors.white,
+      surface: Colors.grey.shade900,
+      onSurface: Colors.white,
+    ),*/
   );
 
   final ThemeData _lightTheme = ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
-      primaryColor: Colors.purple,
-      backgroundColor: Colors.grey,
-      cardColor: Color(0xffd5dae0),
-      colorScheme: ColorScheme.fromSwatch(
-        brightness: Brightness.light,
-        primarySwatch: Colors.purple,
-      ).copyWith(secondary: Colors.pink),
-    textTheme: const TextTheme(
-      bodyText1: TextStyle( color: Colors.white),
-      bodyText2: TextStyle( color: Colors.black87 ),
-    ),
 
+    colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.grey,
+
+        brightness: Brightness.light,
+    ),
+    /*colorScheme: const ColorScheme(
+      brightness: Brightness.light,
+      primary: Colors.orange,
+      onPrimary: Colors.white,
+      secondary: Colors.green,
+      onSecondary: Colors.white,
+      primaryContainer: Colors.orange,
+      error: Colors.black,
+      onError: Colors.white,
+      background: Colors.blue,
+      onBackground: Colors.white,
+      surface: Colors.pink,
+      onSurface: Colors.white,
+    ),*/
   );
 
   // This widget is the root of your application.
