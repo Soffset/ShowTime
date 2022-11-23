@@ -23,16 +23,27 @@ class DetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         //backgroundColor: Colors.red,
-        toolbarHeight: 0,
-        shadowColor: Colors.transparent,// Status bar color
+        //toolbarHeight: 0,
+        //shadowColor: Colors.transparent,// Status bar color
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.favorite_outline,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              // do something
+            },
+          )
+        ],
       ),
       body: SafeArea(
         child: CustomScrollView(
           slivers: <Widget>[
-            SliverPersistentHeader(
+            /*SliverPersistentHeader(
               pinned: true,
               delegate: DetailsAppBar(bgImage: fullImage, title: title),
-            ),
+            ),*/
             SliverToBoxAdapter(
               child: Container(
                 width: MediaQuery.of(context).size.width,
@@ -128,7 +139,7 @@ class DetailsAppBar extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Material(
-          color: Theme.of(context).primaryColor,
+          //color: Theme.of(context).focusColor,
           child: Stack(
             children: [
               shrinkOffset < (_maxExtent - kToolbarHeight)

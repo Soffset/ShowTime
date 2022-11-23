@@ -11,13 +11,13 @@ class MyApp extends StatelessWidget {
   final _light = true;
   final ThemeData _darkTheme = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Colors.amber,
+    //primaryColor: Colors.amber,
     colorScheme: ColorScheme.fromSwatch(
       brightness: Brightness.dark,
     ).copyWith(secondary: Colors.red),
     textTheme: const TextTheme(
       bodyText1: TextStyle( color: Colors.white,),
-      bodyText2: TextStyle( color: Colors.black87,),
+      bodyText2: TextStyle( color: Colors.white,),
     )
   );
 
