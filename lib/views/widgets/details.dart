@@ -15,22 +15,16 @@ class DetailsPage extends StatelessWidget {
     required this.fullImage,
     required this.genres,
   }) : super(key: key);
-
-  final Color textBlack = const Color(0xff3a3a3a);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
-            icon: const Icon(
-              Icons.favorite_outline,
-              color: Colors.white,
-            ),
-            onPressed: () {
-            },
-          )
+            icon: const Icon( Icons.favorite_outline,),
+            onPressed: () { },
+            color: Theme.of(context).appBarTheme.actionsIconTheme?.color,
+          ),
         ],
       ),
       body: SafeArea(
@@ -50,7 +44,7 @@ class DetailsPage extends StatelessWidget {
                                 image: CachedNetworkImageProvider(fullImage),
                                 fit: BoxFit.cover,
                                 alignment: Alignment.topCenter, //const Alignment(0.40, 0.0),
-                                colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.40), BlendMode.multiply),
+                                colorFilter: ColorFilter.mode(Theme.of(context).backgroundColor.withOpacity(0.40), BlendMode.multiply),
                               )
                           ),
                         ),
@@ -70,8 +64,8 @@ class DetailsPage extends StatelessWidget {
                             children: [
                               SizedBox(
                                 height: MediaQuery.of(context).size.height * 0.18,
-                                width: MediaQuery.of(context).size.width * 0.24,
-                                child: FilmImage(thumbnailUrl: fullImage, ),
+                                width: MediaQuery.of(context).size.height * 0.12,
+                                child: FilmImage( thumbnailUrl: fullImage, ),
                               ),
                               Container(
                                 padding: const EdgeInsets.symmetric( vertical: 8, horizontal: 0, ),

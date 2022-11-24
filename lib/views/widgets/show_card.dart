@@ -38,13 +38,13 @@ class ShowCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(6),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.4),
+                  color: Colors.black.withOpacity(0.8),
                   offset: const Offset(
                     0.0,
-                    4.0,
+                    0.0,
                   ),
-                  blurRadius: 7.0,
-                  spreadRadius: -8.0,
+                  blurRadius: 2.0,
+                  spreadRadius: -0.8,
                 ),
               ],
             ),
