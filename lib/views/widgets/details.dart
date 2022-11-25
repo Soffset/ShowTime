@@ -18,6 +18,7 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
@@ -44,7 +45,7 @@ class DetailsPage extends StatelessWidget {
                                 image: CachedNetworkImageProvider(fullImage),
                                 fit: BoxFit.cover,
                                 alignment: Alignment.topCenter, //const Alignment(0.40, 0.0),
-                                colorFilter: ColorFilter.mode(Theme.of(context).backgroundColor.withOpacity(0.40), BlendMode.multiply),
+                                colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.background.withOpacity(0.40), BlendMode.multiply),
                               )
                           ),
                         ),
@@ -53,7 +54,7 @@ class DetailsPage extends StatelessWidget {
                             gradient: LinearGradient(
                                 begin: Alignment.topCenter,
                                 end: const Alignment(0.0, 0.50),
-                                colors: [ Colors.transparent, Theme.of(context).backgroundColor, ],
+                                colors: [ Colors.transparent, Theme.of(context).colorScheme.background, ],
                             ),
                           ),
                         ),
@@ -83,7 +84,6 @@ class DetailsPage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    color: Theme.of(context).backgroundColor,
                     width: MediaQuery.of(context).size.width,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

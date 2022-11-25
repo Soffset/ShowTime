@@ -38,42 +38,21 @@ class MyApp extends StatelessWidget {
       useMaterial3: true,
       brightness: Brightness.light,
 
-      primarySwatch: Colors.grey,
-
       appBarTheme: const AppBarTheme(
         color: Color(0xFF035D63),
-        //scrolledUnderElevation: 0.0,
-        //shadowColor: Colors.black,
+        scrolledUnderElevation: 0.0,
+        shadowColor: Colors.black,
         foregroundColor: Colors.white,
-
-        iconTheme: IconThemeData(
-          color: Colors.white,
-        ),
-        actionsIconTheme: IconThemeData(
-          color: Colors.white,
-        ),
-
-        textTheme: TextTheme(
-          // center text style
-            headline6: TextStyle(
-                color: Colors.white,
-            ),
-            // Side text style
-            bodyText2: TextStyle(color: Colors.white)
-        ),
-
-        surfaceTintColor: Colors.white,
-
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarIconBrightness: Brightness.light,
-        ),
       ),
 
       scaffoldBackgroundColor: Colors.white,
       cardTheme: const CardTheme(
         color: Color(0xFFF2F5F8),
       ),
-      backgroundColor: Colors.white,
+      colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey).copyWith(
+          background: const Color(0xFFF2F5F8)
+      ),
+
   );
 
   // This widget is the root of your application.
