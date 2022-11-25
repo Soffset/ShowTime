@@ -12,26 +12,32 @@ class MyApp extends StatelessWidget {
 
   final ThemeData _darkTheme = ThemeData(
     useMaterial3: true,
-    brightness: Brightness.dark,
-
-    primarySwatch: Colors.grey,
+    colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey).copyWith(
+      brightness: Brightness.dark,
+      background: const Color(0xFF121212),
+    ),
 
     appBarTheme: const AppBarTheme(
       color: Color(0xFF0A0A0A),
       scrolledUnderElevation: 0.0,
       shadowColor: Colors.black,
       foregroundColor: Colors.white,
+      iconTheme: IconThemeData(
+        color: Colors.white,
+      ),
+      actionsIconTheme: IconThemeData(
+        color: Colors.white,
+      ),
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.light,
+      ),
     ),
     scaffoldBackgroundColor: const Color(0xFF121212),
     cardTheme: const CardTheme(
       color: Color(0xFF191919),
     ),
-    backgroundColor: const Color(0xFF121212),
 
-    //bg #1d1c1c
-    //card #191918
-    //hover #292829
-    //appbar #191918
+
   );
 
   final ThemeData _lightTheme = ThemeData(
@@ -43,6 +49,12 @@ class MyApp extends StatelessWidget {
         scrolledUnderElevation: 0.0,
         shadowColor: Colors.black,
         foregroundColor: Colors.white,
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
+        actionsIconTheme: IconThemeData(
+          color: Colors.white,
+        ),
       ),
 
       scaffoldBackgroundColor: Colors.white,
@@ -50,6 +62,7 @@ class MyApp extends StatelessWidget {
         color: Color(0xFFF2F5F8),
       ),
       colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey).copyWith(
+          brightness: Brightness.light,
           background: const Color(0xFFF2F5F8)
       ),
 

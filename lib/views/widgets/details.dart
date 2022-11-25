@@ -20,6 +20,9 @@ class DetailsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        leading: BackButton(
+          color: Theme.of(context).appBarTheme.actionsIconTheme?.color,
+        ),
         actions: <Widget>[
           IconButton(
             icon: const Icon( Icons.favorite_outline,),
@@ -69,7 +72,7 @@ class DetailsPage extends StatelessWidget {
                                 child: FilmImage( thumbnailUrl: fullImage, ),
                               ),
                               Container(
-                                padding: const EdgeInsets.symmetric( vertical: 8, horizontal: 0, ),
+                                padding: const EdgeInsets.fromLTRB(0, 6, 0, 0),
                                 child: Text(
                                   title,
                                   style: const TextStyle(
@@ -83,41 +86,66 @@ class DetailsPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(18, 6, 18, 9),
-                          child: const Text(
-                            'Genres',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              height: 1.2,
-                              fontSize: 18,
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(18, 0, 18, 0),
-                          child: Text(
-                            genres.join(", "),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w400,
-                              height: 1.2,
-                              fontSize: 16,
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+
                 ],
               ),
 
+            ),
+            SliverToBoxAdapter(
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(18, 0, 18, 9),
+                      child: const Text(
+                        'Status • ongoing',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          height: 1.2,
+                          fontSize: 17,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(18, 0, 18, 9),
+                      child: const Text(
+                        'Genres',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          height: 1.2,
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(20, 0, 18, 0),
+                      child: Text(
+                        genres.join(", "),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          height: 1.2,
+                          fontSize: 16,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
             SliverToBoxAdapter(
               child: Container(
@@ -138,13 +166,13 @@ class DetailsPage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.fromLTRB(18, 0, 18, 20),
+                      margin: const EdgeInsets.fromLTRB(20, 0, 18, 20),
                       child: Text(
                         summary,
                         style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           height: 1.2,
-                          fontSize: 14,
+                          fontSize: 15,
                         ),
                         textAlign: TextAlign.left,
                       ),
