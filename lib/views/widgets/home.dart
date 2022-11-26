@@ -47,15 +47,7 @@ class HomePageState extends State<HomePage> {
               : ListView.builder(
               itemCount: _shows.length,
               itemBuilder: (context, index) {
-              return ShowCard(
-                title: _shows[index].name,
-                duration: _shows[index].duration.toString(),
-                rating: _shows[index].rating.toString(),
-                thumbnailUrl: _shows[index].image,
-                summary: _shows[index].summary.toString(),
-                fullImage: _shows[index].fullImage.toString(),
-                genres: _shows[index].genres,
-              );
+              return ShowCard( show: _shows[index],);
             },
           ),
 

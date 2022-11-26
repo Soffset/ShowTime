@@ -9,6 +9,7 @@ class Show {
     final int duration;
     final String summary;
     final String fullImage;
+    final String status;
 
     Show({
       required this.name,
@@ -18,7 +19,8 @@ class Show {
       required this.rating,
       required this.duration,
       required this.summary,
-      required this.fullImage});
+      required this.fullImage,
+      required this.status,});
 
     factory Show.fromJson(dynamic showJson) {
       return Show(
@@ -30,6 +32,7 @@ class Show {
         duration: showJson['averageRuntime'],
         summary: formatString( showJson['summary'] ),
         fullImage: showJson['image']['original'],
+        status: showJson['status'],
       );
     }
 

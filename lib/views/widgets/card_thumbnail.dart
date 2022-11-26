@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:progetto_esame/views/widgets/details.dart';
-import 'package:progetto_esame/views/widgets/show_card.dart';
+import 'package:progetto_esame/models/show.dart';
 
 class CardThumbnail extends StatelessWidget {
-  final String thumbnailUrl;
-  final ShowCard parentCard;
+  final Show show;
 
   const CardThumbnail({Key? key,
-    required this.thumbnailUrl,
-    required this.parentCard,
+    required this.show,
   }) : super(key: key);
 
   @override
@@ -23,7 +20,7 @@ class CardThumbnail extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(6),
             child: Image(
-              image: CachedNetworkImageProvider(thumbnailUrl),
+              image: CachedNetworkImageProvider(show.image),
               fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity,
@@ -38,7 +35,7 @@ class CardThumbnail extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => DetailsPage(title: parentCard.title, summary: parentCard.summary, fullImage: parentCard.fullImage, genres: parentCard.genres,)),
+                  MaterialPageRoute(builder: (context) => DetailsPage( show: show, )),
                 );
               },
             ),

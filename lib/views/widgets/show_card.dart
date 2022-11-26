@@ -3,23 +3,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:progetto_esame/views/widgets/details.dart';
 import 'package:progetto_esame/views/widgets/card_thumbnail.dart';
+import 'package:progetto_esame/models/show.dart';
 
 class ShowCard extends StatelessWidget {
-  final String title;
-  final String rating;
-  final String duration;
-  final String thumbnailUrl;
-  final String summary;
-  final String fullImage;
-  final List<String> genres;
+  final Show show;
   const ShowCard({Key? key,
-    required this.title,
-    required this.duration,
-    required this.rating,
-    required this.thumbnailUrl,
-    required this.summary,
-    required this.fullImage,
-    required this.genres,
+    required this.show,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -60,7 +49,7 @@ class ShowCard extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
                     width: MediaQuery.of(context).size.width * 0.32015,
                     height: double.infinity,
-                    child: CardThumbnail( thumbnailUrl: thumbnailUrl, parentCard: this, ),
+                    child: CardThumbnail( show: show, ),
                   ),
                   Expanded(
                     flex: 1,
@@ -72,7 +61,7 @@ class ShowCard extends StatelessWidget {
                             margin: const EdgeInsets.fromLTRB(2, 8, 0, 5),
                             width: double.infinity,
                             child: Text(
-                              title,
+                              show.name,
                               style: GoogleFonts.roboto(
                                   textStyle: const TextStyle(
                                     fontWeight: FontWeight.w400,
@@ -92,7 +81,7 @@ class ShowCard extends StatelessWidget {
                             margin: const EdgeInsets.fromLTRB(3, 2, 10, 7),
                             width: double.infinity,
                             child: Text(
-                              summary,
+                              show.summary,
                               style: GoogleFonts.roboto(
                                   textStyle: const TextStyle(
                                     fontWeight: FontWeight.w400,
@@ -131,7 +120,7 @@ class ShowCard extends StatelessWidget {
                                       ),
                                       const SizedBox(width: 7),
                                       Text(
-                                        rating,
+                                        show.rating,
                                         style: const TextStyle(color: Colors.white),
                                       ),
                                     ],
@@ -153,7 +142,7 @@ class ShowCard extends StatelessWidget {
                                       ),
                                       const SizedBox(width: 7),
                                       Text(
-                                        duration,
+                                        show.duration.toString(),
                                         style: const TextStyle(color: Colors.white),
                                       ),
                                     ],
@@ -180,7 +169,7 @@ class ShowCard extends StatelessWidget {
   void openDetails( BuildContext context, [details] ){
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => DetailsPage(title: title, summary: summary, fullImage: fullImage, genres: genres,)),
+      MaterialPageRoute(builder: (context) => DetailsPage(show: show,)),
     );
   }
 

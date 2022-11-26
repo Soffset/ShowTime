@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'dart:math';
+import 'package:progetto_esame/models/show.dart';
+
 
 class DetailsPage extends StatelessWidget {
-  final String title;
-  final String summary;
-  final String fullImage;
-  final List<String> genres;
+  final Show show;
   const DetailsPage({
     Key? key,
-    required this.title,
-    required this.summary,
-    required this.fullImage,
-    required this.genres,
+    required this.show,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -45,7 +39,7 @@ class DetailsPage extends StatelessWidget {
                           height: MediaQuery.of(context).size.height * 0.29,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: CachedNetworkImageProvider(fullImage),
+                                image: CachedNetworkImageProvider(show.fullImage),
                                 fit: BoxFit.cover,
                                 alignment: Alignment.topCenter, //const Alignment(0.40, 0.0),
                                 colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.background.withOpacity(0.40), BlendMode.multiply),
@@ -69,12 +63,12 @@ class DetailsPage extends StatelessWidget {
                               SizedBox(
                                 height: MediaQuery.of(context).size.height * 0.18,
                                 width: MediaQuery.of(context).size.height * 0.12,
-                                child: FilmImage( thumbnailUrl: fullImage, ),
+                                child: FilmImage( thumbnailUrl: show.fullImage, ),
                               ),
                               Container(
                                 padding: const EdgeInsets.fromLTRB(0, 6, 0, 0),
                                 child: Text(
-                                  title,
+                                  show.name,
                                   style: const TextStyle(
                                     fontSize: 24,
                                   ),
@@ -99,9 +93,9 @@ class DetailsPage extends StatelessWidget {
                   children: [
                     Container(
                       margin: const EdgeInsets.fromLTRB(18, 0, 18, 9),
-                      child: const Text(
-                        'Status • ongoing',
-                        style: TextStyle(
+                      child: Text(
+                        'Status • ${show.status}',
+                        style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           height: 1.2,
                           fontSize: 17,
@@ -134,7 +128,7 @@ class DetailsPage extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.fromLTRB(20, 0, 18, 0),
                       child: Text(
-                        genres.join(", "),
+                        show.genres.join(", "),
                         style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           height: 1.2,
@@ -168,7 +162,7 @@ class DetailsPage extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.fromLTRB(20, 0, 18, 20),
                       child: Text(
-                        summary,
+                        show.summary,
                         style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           height: 1.2,
