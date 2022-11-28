@@ -16,7 +16,7 @@ class ShowCard extends StatelessWidget {
     return SizedBox(
         width: MediaQuery.of(context).size.width,
         child: GestureDetector(
-          onTapUp: (tud){ openDetails(context, tud); },
+          onTapUp: (tud){ Navigator.of(context).push(_openDetailsRoute(show)); },
           onTapCancel: (){},
           //onTap: (){ openDetails(context); },
           child: Container(
@@ -166,10 +166,27 @@ class ShowCard extends StatelessWidget {
 
     );
   }
-  void openDetails( BuildContext context, [details] ){
+  /*void openDetails( BuildContext context, [details] ){
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => DetailsPage(show: show,)),
+    );
+  }*/
+  static Route _openDetailsRoute(Show show) {
+
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => DetailsPage(show: show,),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(1.0, 0.0);
+          const end = Offset.zero;
+          final tween = Tween(begin: begin, end: end);
+          final offsetAnimation = animation.drive(tween);
+
+          return SlideTransition(
+            position: offsetAnimation,
+            child: child,
+          );
+        },
     );
   }
 

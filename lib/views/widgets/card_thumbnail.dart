@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:progetto_esame/views/widgets/details.dart';
+import 'package:progetto_esame/views/widgets/show_card.dart';
 import 'package:progetto_esame/models/show.dart';
 
 class CardThumbnail extends StatelessWidget {
@@ -32,12 +32,6 @@ class CardThumbnail extends StatelessWidget {
               splashColor: const Color(0x20EEEEEE),
               highlightColor: const Color(0x35EEEEEE),
               borderRadius: BorderRadius.circular(6),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => DetailsPage( show: show, )),
-                );
-              },
             ),
           ),
         ],
