@@ -8,7 +8,8 @@ import 'package:progetto_esame/views/widgets/episode_card.dart';
 
 class DetailsPage extends StatefulWidget {
   final Show show;
-  const DetailsPage({Key? key,
+  const DetailsPage({
+    Key? key,
     required this.show,
   }) : super(key: key);
 
@@ -45,8 +46,10 @@ class DetailsPageState extends State<DetailsPage> {
         ),
         actions: <Widget>[
           IconButton(
-            icon: const Icon( Icons.favorite_outline,),
-            onPressed: () { },
+            icon: const Icon(
+              Icons.favorite_outline,
+            ),
+            onPressed: () {},
             color: Theme.of(context).appBarTheme.actionsIconTheme?.color,
           ),
         ],
@@ -65,19 +68,28 @@ class DetailsPageState extends State<DetailsPage> {
                           height: MediaQuery.of(context).size.height * 0.29,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: CachedNetworkImageProvider(widget.show.fullImage),
-                                fit: BoxFit.cover,
-                                alignment: Alignment.topCenter, //const Alignment(0.40, 0.0),
-                                colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.background.withOpacity(0.40), BlendMode.multiply),
-                              )
-                          ),
+                            image: CachedNetworkImageProvider(
+                                widget.show.fullImage),
+                            fit: BoxFit.cover,
+                            alignment: Alignment
+                                .topCenter, //const Alignment(0.40, 0.0),
+                            colorFilter: ColorFilter.mode(
+                                Theme.of(context)
+                                    .colorScheme
+                                    .background
+                                    .withOpacity(0.40),
+                                BlendMode.multiply),
+                          )),
                         ),
                         Container(
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: const Alignment(0.0, 0.50),
-                                colors: [ Colors.transparent, Theme.of(context).colorScheme.background, ],
+                              begin: Alignment.topCenter,
+                              end: const Alignment(0.0, 0.50),
+                              colors: [
+                                Colors.transparent,
+                                Theme.of(context).colorScheme.background,
+                              ],
                             ),
                           ),
                         ),
@@ -87,9 +99,13 @@ class DetailsPageState extends State<DetailsPage> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               SizedBox(
-                                height: MediaQuery.of(context).size.height * 0.18,
-                                width: MediaQuery.of(context).size.height * 0.12,
-                                child: FilmImage( thumbnailUrl: widget.show.fullImage, ),
+                                height:
+                                    MediaQuery.of(context).size.height * 0.18,
+                                width:
+                                    MediaQuery.of(context).size.height * 0.12,
+                                child: FilmImage(
+                                  thumbnailUrl: widget.show.fullImage,
+                                ),
                               ),
                               Container(
                                 padding: const EdgeInsets.fromLTRB(0, 6, 0, 0),
@@ -106,10 +122,8 @@ class DetailsPageState extends State<DetailsPage> {
                       ],
                     ),
                   ),
-
                 ],
               ),
-
             ),
             SliverToBoxAdapter(
               child: SizedBox(
@@ -204,18 +218,9 @@ class DetailsPageState extends State<DetailsPage> {
             SliverToBoxAdapter(
               child: Container(
                 margin: EdgeInsets.fromLTRB(18, 0, 18, 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: DropdownButtonExample(showId: widget.show.id,),
-                    ),
-                    Expanded( flex: 3, child: Container( color: Colors.red)),
-                  ],
+                child: EpisodeList(show: widget.show, ),
                 ),
               ),
-            ),
             /*SliverToBoxAdapter(
                   child: _isLoading
                   ? const Center(child: CircularProgressIndicator())
@@ -238,7 +243,8 @@ class DetailsPageState extends State<DetailsPage> {
 class FilmImage extends StatelessWidget {
   final String thumbnailUrl;
 
-  const FilmImage({Key? key,
+  const FilmImage({
+    Key? key,
     required this.thumbnailUrl,
   }) : super(key: key);
 
@@ -264,7 +270,7 @@ class FilmImage extends StatelessWidget {
               splashColor: const Color(0x20EEEEEE),
               highlightColor: const Color(0x35EEEEEE),
               borderRadius: BorderRadius.circular(6),
-              onTap: () { },
+              onTap: () {},
             ),
           ),
         ],
@@ -273,24 +279,26 @@ class FilmImage extends StatelessWidget {
 
     throw UnimplementedError();
   }
-
 }
 
-class DropdownButtonExample extends StatefulWidget {
-  final int showId;
-  const DropdownButtonExample({super.key,
-    required this.showId,
+class EpisodeList extends StatefulWidget {
+  final Show show;
+  const EpisodeList({
+    super.key,
+    required this.show,
   });
 
   @override
-  State<DropdownButtonExample> createState() => _DropdownButtonExampleState();
+  State<EpisodeList> createState() => _EpisodeListState();
 }
 
-class _DropdownButtonExampleState extends State<DropdownButtonExample> {
+class _EpisodeListState extends State<EpisodeList> {
   String dropdownValue = "";
 
-  bool _isLoading = true;
+  bool _seasonsLoading = true;
   List<Season> _seasons = [];
+  bool _episodesLoading = true;
+  List<Episode> _episodes = [];
 
   @override
   void initState() {
@@ -299,39 +307,75 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
   }
 
   Future<void> getSeasons() async {
-    _seasons = await SeasonsApi.getSeason(widget.showId);
+    _seasons = await SeasonsApi.getSeason(widget.show.id);
     dropdownValue = _seasons[0].id.toString();
+    getEpisodes();
     setState(() {
-      _isLoading = false;
+      _seasonsLoading = false;
+    });
+  }
+
+  Future<void> getEpisodes() async {
+    print("number: $dropdownValue");
+    _episodes = await EpisodesApi.getEpisode(int.parse(dropdownValue));
+    var l = _episodes.length;
+    setState(() {
+      _episodesLoading = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return _isLoading || _seasons.isEmpty
-      ? DropdownButton<String> ( disabledHint: const Text("Loading"), onChanged: null, items: const [],)
-      : DropdownButton<String>(
-      value: dropdownValue,
-      //icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      //style: const TextStyle(color: Colors.deepPurple),
-      /*underline: Container(
-        height: 2,
-        color: Colors.white,
-      ),*/
-      onChanged: (String? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-          print('Dropdown value: ${dropdownValue}');
-        });
-      },
-      items: _seasons.map<DropdownMenuItem<String>>((season) {
-        return DropdownMenuItem<String>(
-          value: season.id.toString(),
-          child: Text("Season ${season.number}"),
-        );
-      }).toList(),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _seasonsLoading || _seasons.isEmpty
+            ? DropdownButton<String>(
+                disabledHint: const Text("Loading"),
+                onChanged: null,
+                items: const [],
+              )
+            : DropdownButton<String>(
+                value: dropdownValue,
+                //icon: const Icon(Icons.arrow_downward),
+                elevation: 16,
+                //style: const TextStyle(color: Colors.deepPurple),
+                /*underline: Container(
+                  height: 2,
+                  color: Colors.white,
+                ),*/
+                onChanged: (String? value) {
+                  // This is called when the user selects an item.
+                  setState(() {
+                    dropdownValue = value!;
+                    getEpisodes();
+
+                  });
+                },
+                items: _seasons.map<DropdownMenuItem<String>>((season) {
+                  return DropdownMenuItem<String>(
+                    value: season.id.toString(),
+                    child: Text("Season ${season.number}"),
+                  );
+                }).toList(),
+              ),
+        ClipRRect(
+          //width: MediaQuery.of(context).size.width,
+          borderRadius: BorderRadius.circular(5.0),
+          child: _episodesLoading
+              ? const Center(child: CircularProgressIndicator())
+              : ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: _episodes.length,
+                  itemBuilder: (context, index) {
+                    return EpisodeCard(
+                      episode: _episodes[index],
+                    );
+                  },
+                ),
+        ),
+      ],
     );
   }
 }

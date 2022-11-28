@@ -18,7 +18,9 @@ class EpisodesApi {
     List _temp = [];
 
     for (var i in data) {
-      _temp.add(i);//add each object in the json to a list
+      if(i['number'] != null) {
+        _temp.add(i);//add each object in the json to a list
+      }
     }
 
     return Episode.showsFromSnapshot(_temp);
