@@ -32,6 +32,7 @@ class CardThumbnail extends StatelessWidget {
               splashColor: const Color(0x20EEEEEE),
               highlightColor: const Color(0x35EEEEEE),
               borderRadius: BorderRadius.circular(6),
+              onTap: (){ Navigator.of(context).push(ShowCard.openDetailsRoute(show)); },
             ),
           ),
         ],

@@ -5,6 +5,7 @@ import 'package:progetto_esame/views/widgets/details.dart';
 import 'package:progetto_esame/views/widgets/card_thumbnail.dart';
 import 'package:progetto_esame/models/show.dart';
 
+
 class ShowCard extends StatelessWidget {
   final Show show;
   const ShowCard({Key? key,
@@ -16,7 +17,7 @@ class ShowCard extends StatelessWidget {
     return SizedBox(
         width: MediaQuery.of(context).size.width,
         child: GestureDetector(
-          onTapUp: (tud){ Navigator.of(context).push(_openDetailsRoute(show)); },
+          onTapUp: (tud){ Navigator.of(context).push(openDetailsRoute(show)); },
           onTapCancel: (){},
           //onTap: (){ openDetails(context); },
           child: Container(
@@ -172,7 +173,7 @@ class ShowCard extends StatelessWidget {
       MaterialPageRoute(builder: (context) => DetailsPage(show: show,)),
     );
   }*/
-  static Route _openDetailsRoute(Show show) {
+  static Route openDetailsRoute(Show show) {
 
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => DetailsPage(show: show,),
