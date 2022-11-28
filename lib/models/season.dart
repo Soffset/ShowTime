@@ -6,12 +6,10 @@ class Season {
   final int id;
   final int number;
   final int episodesNumber;
-  final String image;
   Season({
     required this.id,
     required this.number,
     required this.episodesNumber,
-    required this.image,
   });
 
   factory Season.fromJson(dynamic json) {
@@ -19,7 +17,6 @@ class Season {
       id: json['id'],
       number: json['number'],
       episodesNumber: json['episodeOrder'],
-      image: json['image']['medium'],
     );
   }
 
@@ -27,6 +24,15 @@ class Season {
     return snapshot.map((data) {
       return Season.fromJson(data);
     }).toList();
+  }
+
+  static String getImage( imageLink ){
+    if(imageLink == null ){
+      return "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
+    }else{
+      return imageLink["medium"];
+    }
+
   }
 }
 
@@ -42,7 +48,9 @@ class SeasonsApi {
     List _temp = [];
 
     for (var i in data) {
-      _temp.add(i);//add each object in the json to a list
+      if(i["episodeOrder"] != null) {
+        _temp.add(i); //add each object in the json to a list
+      }
     }
 
     return Season.showsFromSnapshot(_temp);
