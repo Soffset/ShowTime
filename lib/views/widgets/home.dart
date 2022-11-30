@@ -30,6 +30,10 @@ class HomePageState extends State<HomePage> {
 
   }
 
+  Future<void> textChanged(String text) async{
+    print(text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,22 +41,29 @@ class HomePageState extends State<HomePage> {
         ? AppBar(
           centerTitle: true,
           leading: const Icon(Icons.search,),
-          title: Container(
+          title: SizedBox(
             height: kToolbarHeight,
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                   Expanded(
                     flex: 1,
                     child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 6, horizontal: 3),
+                      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 3),
                       child: TextField(
+                        textAlignVertical: TextAlignVertical.bottom,
+                        style: const TextStyle(
+                          color: Colors.black87,
+                        ),
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Theme.of(context).appBarTheme.actionsIconTheme?.color,
-                          border: OutlineInputBorder(),
-                          labelText: 'Search',
+                          border: const OutlineInputBorder(),
+                          hintText: 'Search',
+                          hintStyle: const TextStyle(
+                            color: Colors.black45,
+                          ),
                         ),
+                        onChanged: (text) => textChanged(text),
                       ),
                     ),
                   ),
