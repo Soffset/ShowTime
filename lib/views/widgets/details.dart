@@ -214,7 +214,7 @@ class DetailsPageState extends State<DetailsPage> {
             ),
             SliverToBoxAdapter(
               child: Container(
-                margin: EdgeInsets.fromLTRB(18, 0, 18, 10),
+                margin: const EdgeInsets.fromLTRB(18, 0, 18, 10),
                 child: EpisodeList(show: widget.show, ),
                 ),
               ),
