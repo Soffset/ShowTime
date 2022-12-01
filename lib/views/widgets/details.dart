@@ -4,6 +4,7 @@ import 'package:progetto_esame/models/episodes.api.dart';
 import 'package:progetto_esame/models/show.dart';
 import 'package:progetto_esame/models/episode.dart';
 import 'package:progetto_esame/views/widgets/episode_list.dart';
+import 'package:progetto_esame/views/widgets/favourites_page.dart';
 
 class DetailsPage extends StatefulWidget {
   final Show show;
@@ -46,7 +47,7 @@ class DetailsPageState extends State<DetailsPage> {
             icon: const Icon(
               Icons.favorite_outline,
             ),
-            onPressed: () {},
+            onPressed: () { FavoritesPage.addFavShow(widget.show); },
             color: Theme.of(context).appBarTheme.actionsIconTheme?.color,
           ),
         ],

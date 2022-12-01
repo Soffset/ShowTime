@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:progetto_esame/models/show.api.dart';
 import 'package:progetto_esame/models/show.dart';
+import 'package:progetto_esame/views/widgets/favourites_page.dart';
 import 'package:progetto_esame/views/widgets/show_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -49,6 +50,24 @@ class HomePageState extends State<HomePage> {
     setState(() {
       _isLoading = false;
     });
+  }
+
+  static Route openFavouritesPage() {
+
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => FavoritesPage(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 0.0);
+        const end = Offset.zero;
+        final tween = Tween(begin: begin, end: end);
+        final offsetAnimation = animation.drive(tween);
+
+        return SlideTransition(
+          position: offsetAnimation,
+          child: child,
+        );
+      },
+    );
   }
 
   @override
@@ -117,6 +136,13 @@ class HomePageState extends State<HomePage> {
               Text('Show Time'),
             ],
           ),
+          leading: IconButton(
+            icon: const Icon(
+              Icons.favorite_outline_rounded,
+            ),
+            onPressed: () { Navigator.of(context).push(openFavouritesPage()); },
+            color: Theme.of(context).appBarTheme.actionsIconTheme?.color,
+          ),
           actions: [
             IconButton(
               icon: const Icon(
@@ -134,7 +160,7 @@ class HomePageState extends State<HomePage> {
               : ListView.builder(
               itemCount: _shows.length,
               itemBuilder: (context, index) {
-              return ShowCard( show: _shows[index],);
+              return ShowCard( show: _shows[index], );
             },
           ),
 
