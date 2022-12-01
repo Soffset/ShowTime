@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   List<Show> _shows = [];
+  List<Show> _allShows = [];
   bool _isLoading = true;
   bool searching = false;
   String searchText = '';
@@ -25,10 +26,10 @@ class HomePageState extends State<HomePage> {
 
   Future<void> getShows() async {
     _shows = await ShowApi.getShows();
+    _allShows = List.from(_shows);
     setState(() {
       _isLoading = false;
     });
-
   }
 
   Future<void> textChanged(String text) async{
@@ -43,13 +44,11 @@ class HomePageState extends State<HomePage> {
     setState(() {
       _isLoading = true;
     });
-
     _shows.clear();
     _shows = await ShowApi.getShow(text);
     setState(() {
       _isLoading = false;
     });
-    print(text);
   }
 
   @override
@@ -97,8 +96,11 @@ class HomePageState extends State<HomePage> {
               icon: const Icon(
                 Icons.close,
               ),
-              onPressed: () { setState(() {
+              onPressed: () {
+              _shows = List.from(_allShows);
+              setState(() {
                 searching = false;
+
               }); },
               color: Theme.of(context).appBarTheme.actionsIconTheme?.color,
             ),

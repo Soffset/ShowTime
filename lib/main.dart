@@ -75,6 +75,7 @@ class MyApp extends StatelessWidget {
         theme: _lightTheme,
         title: 'Shows',
         darkTheme: _darkTheme,
+        debugShowCheckedModeBanner: false,
 
       home: const HomePage(),
     );
