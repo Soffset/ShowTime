@@ -165,7 +165,7 @@ class DetailsPageState extends State<DetailsPage> {
                     Container(
                       margin: const EdgeInsets.fromLTRB(20, 0, 18, 0),
                       child: Text(
-                        widget.show.genres.join(", "),
+                        widget.show.genres?.join(", ") == '' ? "Unknown" : widget.show.genres?.join(", ") ?? "Unknown",
                         style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           height: 1.2,
@@ -199,7 +199,7 @@ class DetailsPageState extends State<DetailsPage> {
                     Container(
                       margin: const EdgeInsets.fromLTRB(20, 0, 18, 20),
                       child: Text(
-                        widget.show.summary,
+                        widget.show.summary ?? "No summary.",
                         style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           height: 1.2,

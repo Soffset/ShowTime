@@ -82,7 +82,7 @@ class ShowCard extends StatelessWidget {
                             margin: const EdgeInsets.fromLTRB(3, 2, 10, 7),
                             width: double.infinity,
                             child: Text(
-                              show.summary,
+                              show.summary ?? "No summary.",
                               style: GoogleFonts.roboto(
                                   textStyle: const TextStyle(
                                     fontWeight: FontWeight.w400,
@@ -121,7 +121,7 @@ class ShowCard extends StatelessWidget {
                                       ),
                                       const SizedBox(width: 7),
                                       Text(
-                                        show.rating,
+                                        show.rating ?? "0",
                                         style: const TextStyle(color: Colors.white),
                                       ),
                                     ],

@@ -4,10 +4,10 @@ class Show {
     final String name;
     final String image;
     final int id;
-    final List<String> genres;
-    final String rating;
-    final String duration;
-    final String summary;
+    final List<String>? genres;
+    final String? rating;
+    final String? duration;
+    final String? summary;
     final String fullImage;
     final String status;
 
