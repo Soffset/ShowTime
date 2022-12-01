@@ -68,6 +68,7 @@ class HomePageState extends State<HomePage> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 3),
                       child: TextField(
+                        autofocus: true,
                         textAlignVertical: TextAlignVertical.bottom,
                         style: const TextStyle(
                           color: Colors.black87,
