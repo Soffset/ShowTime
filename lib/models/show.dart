@@ -32,7 +32,7 @@ class Show {
         genres: (showJson["genres"] as List).map((e) => e as String).toList(),
         rating: showJson['rating']['average'].toString(),
         duration: checkString(showJson['averageRuntime']) ,
-        summary: formatString( showJson['summary'] ),
+        summary: formatString( checkString(showJson['summary']) ),
         fullImage: showJson['image'] != null ? showJson['image']['original'] : placeholderImg,
         status: showJson['status'],
       );
