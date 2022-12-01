@@ -14,6 +14,7 @@ class HomePageState extends State<HomePage> {
   List<Show> _shows = [];
   bool _isLoading = true;
   bool searching = false;
+  String searchText = '';
 
 
   @override
@@ -23,7 +24,7 @@ class HomePageState extends State<HomePage> {
   }
 
   Future<void> getShows() async {
-    _shows = await ShowApi.getShow();
+    _shows = await ShowApi.getShows();
     setState(() {
       _isLoading = false;
     });
@@ -31,6 +32,23 @@ class HomePageState extends State<HomePage> {
   }
 
   Future<void> textChanged(String text) async{
+    if(text == '') {
+      return;
+    }
+
+    await Future.delayed(const Duration(milliseconds: 600));
+    if(text != searchText || text == '')
+      return;
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    _shows.clear();
+    _shows = await ShowApi.getShow(text);
+    setState(() {
+      _isLoading = false;
+    });
     print(text);
   }
 
@@ -63,7 +81,10 @@ class HomePageState extends State<HomePage> {
                             color: Colors.black45,
                           ),
                         ),
-                        onChanged: (text) => textChanged(text),
+                        onChanged: (text) => {
+                          setState((){ searchText = text; }),
+                          textChanged(text)
+                      },
                       ),
                     ),
                   ),

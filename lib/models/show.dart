@@ -6,7 +6,7 @@ class Show {
     final int id;
     final List<String> genres;
     final String rating;
-    final int duration;
+    final String duration;
     final String summary;
     final String fullImage;
     final String status;
@@ -22,16 +22,18 @@ class Show {
       required this.fullImage,
       required this.status,});
 
+    static String placeholderImg = 'https://cinemaone.net/images/movie_placeholder.png';
+
     factory Show.fromJson(dynamic showJson) {
       return Show(
         name: showJson['name'],
-        image: showJson['image']['medium'],
+        image: showJson['image'] != null ? showJson['image']['medium'] : placeholderImg,
         id: showJson['id'],
         genres: (showJson["genres"] as List).map((e) => e as String).toList(),
         rating: showJson['rating']['average'].toString(),
-        duration: showJson['averageRuntime'],
+        duration: checkString(showJson['averageRuntime']) ,
         summary: formatString( showJson['summary'] ),
-        fullImage: showJson['image']['original'],
+        fullImage: showJson['image'] != null ? showJson['image']['original'] : placeholderImg,
         status: showJson['status'],
       );
     }
@@ -48,5 +50,12 @@ class Show {
       formatted = formatted.replaceAll ("<b>", "").replaceAll ("</b>", "");
       formatted = formatted.replaceAll ("<i>", "").replaceAll ("</i>", "");
       return formatted;
+    }
+    static String checkString(str){
+      if(str == null) {
+        return 'none';
+      } else{
+        return str.toString();
+      }
     }
   }

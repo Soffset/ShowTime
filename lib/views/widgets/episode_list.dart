@@ -31,6 +31,9 @@ class _EpisodeListState extends State<EpisodeList> {
 
   Future<void> getSeasons() async {
     _seasons = await SeasonsApi.getSeason(widget.show.id);
+    if(_seasons.isEmpty){
+
+    }
     dropdownValue = _seasons[0].id.toString();
     getEpisodes();
     setState(() {
@@ -49,10 +52,11 @@ class _EpisodeListState extends State<EpisodeList> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return _seasons.isEmpty ? Container()
+      : Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _seasonsLoading || _seasons.isEmpty
+        _seasonsLoading
             ? DropdownButton<String>(
           disabledHint: const Text("Loading"),
           onChanged: null,
