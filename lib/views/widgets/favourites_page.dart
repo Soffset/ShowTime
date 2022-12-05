@@ -7,15 +7,16 @@ class FavoritesPage extends StatefulWidget {
   const FavoritesPage({Key? key,
   }) : super(key : key);
 
-  static List<Show> favorite_shows = [];
+  //static List<Show> favorite_shows = [];
+  static ValueNotifier<List<Show>> favorite_shows_notifier = ValueNotifier([]);
 
   static void getFavorites() async { //updates favorite_shows fetching from shared preferences
     const key = 'fav_shows';
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> showsFromPreference = prefs.getStringList(key) ?? [];
-    favorite_shows.clear();
+    favorite_shows_notifier.value.clear();
     List<Show> preferencesShows = Show.decodePreferences(showsFromPreference);
-    favorite_shows = [...preferencesShows];
+    favorite_shows_notifier.value = [...preferencesShows];
   }
 
 
@@ -23,18 +24,21 @@ class FavoritesPage extends StatefulWidget {
     final prefs = await SharedPreferences.getInstance();
     const key = 'fav_shows';
 
-    if(favorite_shows.contains(show)){
-      favorite_shows.remove(show);
+    if(favorite_shows_notifier.value.contains(show)){
+      var fav_old = [...favorite_shows_notifier.value];
+      fav_old.remove(show);
+      favorite_shows_notifier.value = [...fav_old];
+
     }else{
-      favorite_shows.add(show);
+      favorite_shows_notifier.value = [...favorite_shows_notifier.value, show];
     }
 
-    prefs.setStringList(key, Show.encode(favorite_shows));
+    prefs.setStringList(key, Show.encode(favorite_shows_notifier.value));
   }
 
   static bool isFavorite(Show show) { //checks if a show is in favorite_shows
     bool isFav = false;
-if(favorite_shows.contains(show)){
+if(favorite_shows_notifier.value.contains(show)){
       isFav = true;
     }
     return isFav;
@@ -46,18 +50,12 @@ if(favorite_shows.contains(show)){
 
 
 class _FavouritesPageState extends State<FavoritesPage>{
-  List fav_shows = FavoritesPage.favorite_shows;
 
   @override
   void initState() {
     // TODO: implement initState
-    setState(() {
-      fav_shows = FavoritesPage.favorite_shows;
-    });
     super.initState();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -78,14 +76,21 @@ class _FavouritesPageState extends State<FavoritesPage>{
           ],
         ),
       ),
-      body: fav_shows.isEmpty
-      ? const Center(child: Text("No favorite shows added yet!", style: TextStyle(fontSize: 20),))
-          : ListView.builder(
-      itemCount: fav_shows.length,
-      itemBuilder: (context, index) {
-      return ShowCard( show: fav_shows[index], );
-      },
-    )
+      body: AnimatedBuilder(
+          animation: FavoritesPage.favorite_shows_notifier,
+          builder: (context, child) {
+            return FavoritesPage.favorite_shows_notifier.value.isEmpty
+              ? const Center(child: Text("No favorite shows added yet!", style: TextStyle(fontSize: 20),))
+              : ListView.builder(
+              itemCount: FavoritesPage.favorite_shows_notifier.value.length,
+              itemBuilder: (context, index) {
+                return ShowCard(show: FavoritesPage.favorite_shows_notifier.value[index],);
+              },
+            );
+          }
+      ),
+
+
     );
     throw UnimplementedError();
   }

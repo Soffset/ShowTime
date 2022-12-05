@@ -174,7 +174,6 @@ class ShowCard extends StatelessWidget {
     );
   }*/
   static Route openDetailsRoute(Show show) {
-
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => DetailsPage(show: show,),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
