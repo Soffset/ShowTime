@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:progetto_esame/models/episodes.api.dart';
 import 'package:progetto_esame/models/season.dart';
@@ -37,6 +39,13 @@ class _EpisodeListState extends State<EpisodeList> {
     }
     _seasonsLoading = false;
     dropdownValue = _seasons[0].id.toString();
+    getEpisodes().then(
+      (episodes) => {
+        updateEpisodes(),
+      });
+  }
+
+  Future<void> updateEpisodes() async {
     getEpisodes().then(
       (episodes) => {
         if(!_disposing){
@@ -83,7 +92,7 @@ class _EpisodeListState extends State<EpisodeList> {
             // This is called when the user selects an item.
             setState(() {
               dropdownValue = value!;
-              getEpisodes();
+              updateEpisodes();
 
             });
           },

@@ -32,7 +32,6 @@ class DetailsPageState extends State<DetailsPage> {
 
   Future<void> getEpisodes() async {
     _episodes = await EpisodesApi.getEpisode(widget.show.id);
-    var l = _episodes.length;
     setState(() {
       _isLoading = false;
     });
