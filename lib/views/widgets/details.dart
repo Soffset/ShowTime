@@ -20,9 +20,11 @@ class DetailsPage extends StatefulWidget {
 class DetailsPageState extends State<DetailsPage> {
   bool _isLoading = true;
   List<Episode> _episodes = [];
+  late bool _isFav;
 
   @override
   void initState() {
+    _isFav = FavoritesPage.isFavorite(widget.show);
     super.initState();
   }
 
@@ -32,6 +34,13 @@ class DetailsPageState extends State<DetailsPage> {
     setState(() {
       _isLoading = false;
     });
+  }
+
+  void switchFavourite() {
+    setState(() {
+      _isFav = !_isFav;
+    });
+    FavoritesPage.changeFavShow(widget.show);
   }
 
   @override
@@ -44,10 +53,10 @@ class DetailsPageState extends State<DetailsPage> {
         ),
         actions: <Widget>[
           IconButton(
-            icon: const Icon(
-              Icons.favorite_outline,
-            ),
-            onPressed: () { FavoritesPage.addFavShow(widget.show); },
+            icon: _isFav
+                ? const Icon(Icons.favorite,)
+                : const Icon(Icons.favorite_border_outlined),
+            onPressed: () { switchFavourite(); },
             color: Theme.of(context).appBarTheme.actionsIconTheme?.color,
           ),
         ],

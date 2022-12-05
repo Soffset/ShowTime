@@ -3,6 +3,7 @@ import 'package:progetto_esame/models/show.api.dart';
 import 'package:progetto_esame/models/show.dart';
 import 'package:progetto_esame/views/widgets/favourites_page.dart';
 import 'package:progetto_esame/views/widgets/show_card.dart';
+import 'package:progetto_esame/views/widgets/favourites_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -22,6 +23,7 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    FavoritesPage.getFavorites();
     getShows();
   }
 

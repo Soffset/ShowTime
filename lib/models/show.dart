@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:progetto_esame/models/show.api.dart';
 
 class Show {
@@ -24,7 +26,7 @@ class Show {
 
     static String placeholderImg = 'https://cinemaone.net/images/movie_placeholder.png';
 
-    factory Show.fromJson(dynamic showJson) {
+    factory Show.fromJson(Map<String, dynamic> showJson) {
       return Show(
         name: showJson['name'],
         image: showJson['image'] != null ? showJson['image']['medium'] : placeholderImg,
@@ -37,6 +39,42 @@ class Show {
         status: showJson['status'],
       );
     }
+
+    factory Show.fromPreferences(Map<String, dynamic> showJson) {
+      return Show(
+        name: showJson['name'],
+        image: showJson['image'] ?? placeholderImg,
+        id: showJson['id'],
+        genres: showJson["genres"] != null ? (showJson["genres"] as List).map((e) => e as String).toList() : null,
+        rating: showJson['rating'] ?? 'N/A',
+        duration: showJson['averageRuntime'] ?? "N/A",
+        summary: formatString( showJson['summary'] ?? "No summary available" ),
+        fullImage: showJson['image'] ?? placeholderImg,
+        status: showJson['status'],
+      );
+    }
+    static Map<String, dynamic> toMap(Show show) => {
+      'name': show.name,
+      'image': show.image,
+      'id': show.id,
+      'genres': show.genres,
+      'rating': show.rating,
+      'averageRuntime': show.duration,
+      'summary': show.summary,
+      'fullImage': show.fullImage,
+      'status': show.status,
+    };
+
+    static List<String> encode(List<Show> shows) =>
+      shows.map((show) => json.encode(Show.toMap(show))).toList();
+
+    static List<Show> decodePreferences(List<String> shows) =>
+        shows.map((show) => Show.fromPreferences(json.decode(show))).toList();
+
+    static List<Show> decode(String shows) =>
+        (json.decode(shows) as List<dynamic>)
+            .map<Show>((item) => Show.fromPreferences(item))
+            .toList();
 
     static List<Show> showsFromSnapshot(List snapshot) {
       return snapshot.map((data) {
