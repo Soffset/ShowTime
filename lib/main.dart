@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:progetto_esame/views/widgets/home.dart';
+import 'package:ShowTime/views/widgets/home.dart';
 
 void main() {
   runApp( MyApp());

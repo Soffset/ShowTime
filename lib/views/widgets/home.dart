@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:progetto_esame/models/show.api.dart';
-import 'package:progetto_esame/models/show.dart';
-import 'package:progetto_esame/views/widgets/favourites_page.dart';
-import 'package:progetto_esame/views/widgets/show_card.dart';
-import 'package:progetto_esame/views/widgets/favourites_page.dart';
+import 'package:ShowTime/models/show.api.dart';
+import 'package:ShowTime/models/show.dart';
+import 'package:ShowTime/views/widgets/favourites_page.dart';
+import 'package:ShowTime/views/widgets/show_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -133,7 +132,7 @@ class HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: const [
-              Icon(Icons.movie_rounded),
+              Icon(Icons.theaters_rounded),
               SizedBox(width: 10),
               Text('Show Time'),
             ],

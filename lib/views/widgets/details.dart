@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:progetto_esame/models/episodes.api.dart';
-import 'package:progetto_esame/models/show.dart';
-import 'package:progetto_esame/models/episode.dart';
-import 'package:progetto_esame/views/widgets/episode_list.dart';
-import 'package:progetto_esame/views/widgets/favourites_page.dart';
-import 'package:progetto_esame/views/widgets/image_page.dart';
+import 'package:ShowTime/models/episodes.api.dart';
+import 'package:ShowTime/models/show.dart';
+import 'package:ShowTime/models/episode.dart';
+import 'package:ShowTime/views/widgets/episode_list.dart';
+import 'package:ShowTime/views/widgets/favourites_page.dart';
+import 'package:ShowTime/views/widgets/image_page.dart';
 
 class DetailsPage extends StatefulWidget {
   final Show show;
@@ -85,7 +85,7 @@ class DetailsPageState extends State<DetailsPage> {
                                     .colorScheme
                                     .background
                                     .withOpacity(0.40),
-                                BlendMode.multiply),
+                                BlendMode.color),
                           )),
                         ),
                         Container( //GRADIENT BOX

@@ -1,11 +1,9 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:progetto_esame/models/episodes.api.dart';
-import 'package:progetto_esame/models/season.dart';
-import 'package:progetto_esame/models/show.dart';
-import 'package:progetto_esame/models/episode.dart';
-import 'package:progetto_esame/views/widgets/episode_card.dart';
+import 'package:ShowTime/models/episodes.api.dart';
+import 'package:ShowTime/models/season.dart';
+import 'package:ShowTime/models/show.dart';
+import 'package:ShowTime/models/episode.dart';
+import 'package:ShowTime/views/widgets/episode_card.dart';
 class EpisodeList extends StatefulWidget {
   final Show show;
   const EpisodeList({

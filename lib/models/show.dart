@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:progetto_esame/models/show.api.dart';
-
 class Show {
     final String name;
     final String image;

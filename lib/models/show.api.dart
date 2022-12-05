@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:progetto_esame/models/show.dart';
+import 'package:ShowTime/models/show.dart';
 
 class ShowApi {
   static Future<List<Show>> getShows() async {

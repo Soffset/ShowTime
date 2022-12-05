@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:progetto_esame/views/widgets/details.dart';
-import 'package:progetto_esame/views/widgets/card_thumbnail.dart';
-import 'package:progetto_esame/models/show.dart';
+import 'package:ShowTime/views/widgets/details.dart';
+import 'package:ShowTime/views/widgets/card_thumbnail.dart';
+import 'package:ShowTime/models/show.dart';
 
 
 class ShowCard extends StatelessWidget {
@@ -28,12 +28,12 @@ class ShowCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(6),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.6),
+                  color: Colors.black.withOpacity(0.3),
                   offset: const Offset(
                     0.0,
-                    0.1,
+                    0.0,
                   ),
-                  blurRadius: 0.2,
+                  blurRadius: 1.5,
                   spreadRadius: 0.1,
                 ),
               ],

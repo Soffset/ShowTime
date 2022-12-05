@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:progetto_esame/models/show.dart';
-import 'package:progetto_esame/views/widgets/show_card.dart';
+import 'package:ShowTime/models/show.dart';
+import 'package:ShowTime/views/widgets/show_card.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FavoritesPage extends StatefulWidget {
