@@ -5,8 +5,7 @@ import 'package:progetto_esame/models/show.dart';
 import 'package:progetto_esame/models/episode.dart';
 import 'package:progetto_esame/views/widgets/episode_list.dart';
 import 'package:progetto_esame/views/widgets/favourites_page.dart';
-
-import 'image_page.dart';
+import 'package:progetto_esame/views/widgets/image_page.dart';
 
 class DetailsPage extends StatefulWidget {
   final Show show;
