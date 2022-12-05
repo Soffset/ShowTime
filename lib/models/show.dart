@@ -8,7 +8,7 @@ class Show {
     final int id;
     final List<String>? genres;
     final String? rating;
-    final String? duration;
+    final String? year;
     final String? summary;
     final String fullImage;
     final String status;
@@ -19,7 +19,7 @@ class Show {
       required this.id,
       required this.genres,
       required this.rating,
-      required this.duration,
+      required this.year,
       required this.summary,
       required this.fullImage,
       required this.status,});
@@ -33,7 +33,7 @@ class Show {
         id: showJson['id'],
         genres: (showJson["genres"] as List).map((e) => e as String).toList(),
         rating: showJson['rating']['average'].toString(),
-        duration: checkString(showJson['averageRuntime']) ,
+        year: getYear(showJson['premiered']),
         summary: formatString( checkString(showJson['summary']) ),
         fullImage: showJson['image'] != null ? showJson['image']['original'] : placeholderImg,
         status: showJson['status'],
@@ -47,7 +47,7 @@ class Show {
         id: showJson['id'],
         genres: showJson["genres"] != null ? (showJson["genres"] as List).map((e) => e as String).toList() : null,
         rating: showJson['rating'] ?? 'N/A',
-        duration: showJson['averageRuntime'] ?? "N/A",
+        year: showJson['year'] ?? "N/A",
         summary: formatString( showJson['summary'] ?? "No summary available" ),
         fullImage: showJson['image'] ?? placeholderImg,
         status: showJson['status'],
@@ -59,11 +59,15 @@ class Show {
       'id': show.id,
       'genres': show.genres,
       'rating': show.rating,
-      'averageRuntime': show.duration,
+      'averageRuntime': show.year,
       'summary': show.summary,
       'fullImage': show.fullImage,
       'status': show.status,
     };
+
+    static String getYear(String? date) {
+      return date?.substring(0, 4) ?? 'N/A';
+    }
 
     static List<String> encode(List<Show> shows) =>
       shows.map((show) => json.encode(Show.toMap(show))).toList();

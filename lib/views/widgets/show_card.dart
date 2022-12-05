@@ -137,15 +137,16 @@ class ShowCard extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       const Icon(
-                                        Icons.hourglass_bottom_outlined,
-                                        color: Colors.white,
-                                        size: 18,
-                                      ),
+                                          Icons.calendar_today,
+                                          color: Colors.white,
+                                          size: 18,
+                                        ),
                                       const SizedBox(width: 7),
                                       Text(
-                                        show.duration.toString(),
+                                        show?.year ?? "N/A",
                                         style: const TextStyle(color: Colors.white),
                                       ),
+
                                     ],
                                   ),
                                 )

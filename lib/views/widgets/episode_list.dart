@@ -22,32 +22,40 @@ class _EpisodeListState extends State<EpisodeList> {
   List<Season> _seasons = [];
   bool _episodesLoading = true;
   List<Episode> _episodes = [];
+  bool _disposing = false;
 
   @override
   void initState() {
-    super.initState();
     getSeasons();
+    super.initState();
   }
 
   Future<void> getSeasons() async {
     _seasons = await SeasonsApi.getSeason(widget.show.id);
     if(_seasons.isEmpty){
-
+      return;
     }
+    _seasonsLoading = false;
     dropdownValue = _seasons[0].id.toString();
-    getEpisodes();
-    setState(() {
-      _seasonsLoading = false;
-    });
+    getEpisodes().then(
+      (episodes) => {
+        if(!_disposing){
+          setState(() {
+            _episodes = episodes;
+            _episodesLoading = false;
+          })
+        }
+      });
   }
 
-  Future<void> getEpisodes() async {
-    print("number: $dropdownValue");
+  Future<List<Episode>> getEpisodes() async {
     _episodes = await EpisodesApi.getEpisode(int.parse(dropdownValue));
-    var l = _episodes.length;
-    setState(() {
-      _episodesLoading = false;
-    });
+    return _episodes;
+  }
+
+  dispose() {
+    _disposing = true;
+    super.dispose();
   }
 
   @override
