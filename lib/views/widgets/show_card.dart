@@ -167,12 +167,6 @@ class ShowCard extends StatelessWidget {
 
     );
   }
-  /*void openDetails( BuildContext context, [details] ){
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => DetailsPage(show: show,)),
-    );
-  }*/
   static Route openDetailsRoute(Show show) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => DetailsPage(show: show,),
