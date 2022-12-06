@@ -7,7 +7,6 @@ class FavoritesPage extends StatefulWidget {
   const FavoritesPage({Key? key,
   }) : super(key : key);
 
-  //static List<Show> favorite_shows = [];
   static ValueNotifier<List<Show>> favorite_shows_notifier = ValueNotifier([]);
 
   static void getFavorites() async { //updates favorite_shows fetching from shared preferences
@@ -70,7 +69,6 @@ class _FavouritesPageState extends State<FavoritesPage>{
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: const [
-            //Icon(Icons.favorite_rounded),
             SizedBox(width: 10),
             Text('Favorite shows'),
           ],

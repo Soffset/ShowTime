@@ -32,7 +32,7 @@ class Show {
         genres: (showJson["genres"] as List).map((e) => e as String).toList(),
         rating: showJson['rating']['average'].toString(),
         year: getYear(showJson['premiered']),
-        summary: formatString( checkString(showJson['summary']) ),
+        summary: formatString( showJson['summary'] ),
         fullImage: showJson['image'] != null ? showJson['image']['original'] : placeholderImg,
         status: showJson['status'],
       );
@@ -90,12 +90,5 @@ class Show {
       formatted = formatted.replaceAll ("<b>", "").replaceAll ("</b>", "");
       formatted = formatted.replaceAll ("<i>", "").replaceAll ("</i>", "");
       return formatted;
-    }
-    static String checkString(str){
-      if(str == null) {
-        return 'none';
-      } else{
-        return str.toString();
-      }
     }
   }

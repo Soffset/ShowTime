@@ -22,7 +22,6 @@ class ShowApi {
   static Future<List<Show>> getShow(String name) async {
     var params = { "q" : name };
     var uri = Uri.https('api.tvmaze.com','/search/shows', params);
-    //https://api.tvmaze.com/search/shows?q=girls
     final response = await http.get(uri);
 
     List data = await jsonDecode(response.body);
