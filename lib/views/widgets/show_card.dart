@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:progetto_esame/views/widgets/details.dart';
-import 'package:progetto_esame/views/widgets/card_thumbnail.dart';
-import 'package:progetto_esame/models/show.dart';
+import 'package:ShowTime/views/widgets/details.dart';
+import 'package:ShowTime/views/widgets/card_thumbnail.dart';
+import 'package:ShowTime/models/show.dart';
 
 
 class ShowCard extends StatelessWidget {
@@ -28,12 +28,12 @@ class ShowCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(6),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.6),
+                  color: Colors.black.withOpacity(0.3),
                   offset: const Offset(
                     0.0,
-                    0.1,
+                    0.0,
                   ),
-                  blurRadius: 0.2,
+                  blurRadius: 1.5,
                   spreadRadius: 0.1,
                 ),
               ],
@@ -82,7 +82,7 @@ class ShowCard extends StatelessWidget {
                             margin: const EdgeInsets.fromLTRB(3, 2, 10, 7),
                             width: double.infinity,
                             child: Text(
-                              show.summary,
+                              show.summary ?? "No summary.",
                               style: GoogleFonts.roboto(
                                   textStyle: const TextStyle(
                                     fontWeight: FontWeight.w400,
@@ -121,7 +121,7 @@ class ShowCard extends StatelessWidget {
                                       ),
                                       const SizedBox(width: 7),
                                       Text(
-                                        show.rating,
+                                        show.rating ?? "0",
                                         style: const TextStyle(color: Colors.white),
                                       ),
                                     ],
@@ -137,15 +137,16 @@ class ShowCard extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       const Icon(
-                                        Icons.hourglass_bottom_outlined,
-                                        color: Colors.white,
-                                        size: 18,
-                                      ),
+                                          Icons.calendar_today,
+                                          color: Colors.white,
+                                          size: 18,
+                                        ),
                                       const SizedBox(width: 7),
                                       Text(
-                                        show.duration.toString(),
+                                        show?.year ?? "N/A",
                                         style: const TextStyle(color: Colors.white),
                                       ),
+
                                     ],
                                   ),
                                 )
@@ -167,14 +168,7 @@ class ShowCard extends StatelessWidget {
 
     );
   }
-  /*void openDetails( BuildContext context, [details] ){
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => DetailsPage(show: show,)),
-    );
-  }*/
   static Route openDetailsRoute(Show show) {
-
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => DetailsPage(show: show,),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {

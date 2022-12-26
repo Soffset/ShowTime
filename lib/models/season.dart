@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:progetto_esame/models/show.dart';
 
 class Season {
   final int id;

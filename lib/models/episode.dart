@@ -11,14 +11,15 @@ class Episode {
     required this.summary,
     required this.image,
   });
+  static String placeholderImg = 'https://cinemaone.net/images/movie_placeholder.png';
 
   factory Episode.fromJson(dynamic json) {
     return Episode(
       id: json['id'],
       name: json['name'],
       number: json['number'],
-      summary: formatString(json['summary']),
-      image: json['image']['medium'],
+      summary: formatString(checkString(json['summary'])),
+      image: json['image'] != null ? json['image']['medium'] : placeholderImg,
     );
   }
 
@@ -34,5 +35,12 @@ class Episode {
     formatted = formatted.replaceAll ("<b>", "").replaceAll ("</b>", "");
     formatted = formatted.replaceAll ("<i>", "").replaceAll ("</i>", "");
     return formatted;
+  }
+  static String checkString(str){
+    if(str == null) {
+      return 'none';
+    } else{
+      return str.toString();
+    }
   }
 }

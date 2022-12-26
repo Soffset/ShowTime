@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:progetto_esame/models/show.dart';
-import 'package:progetto_esame/models/episode.dart';
+import 'package:ShowTime/models/show.dart';
+import 'package:ShowTime/models/episode.dart';
 
 class EpisodesApi {
   final Show show;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:progetto_esame/views/widgets/home.dart';
+import 'package:ShowTime/views/widgets/home.dart';
 
 void main() {
   runApp( MyApp());
@@ -73,9 +73,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: _lightTheme,
-        title: 'Shows',
+        title: 'Show Time',
         darkTheme: _darkTheme,
-
+        debugShowCheckedModeBanner: false,
       home: const HomePage(),
     );
   }

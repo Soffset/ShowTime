@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:progetto_esame/models/episodes.api.dart';
-import 'package:progetto_esame/models/show.dart';
-import 'package:progetto_esame/models/episode.dart';
-import 'package:progetto_esame/views/widgets/episode_list.dart';
+import 'package:ShowTime/models/episodes.api.dart';
+import 'package:ShowTime/models/show.dart';
+import 'package:ShowTime/models/episode.dart';
+import 'package:ShowTime/views/widgets/episode_list.dart';
+import 'package:ShowTime/views/widgets/favourites_page.dart';
+import 'package:ShowTime/views/widgets/image_page.dart';
 
 class DetailsPage extends StatefulWidget {
   final Show show;
@@ -19,18 +21,26 @@ class DetailsPage extends StatefulWidget {
 class DetailsPageState extends State<DetailsPage> {
   bool _isLoading = true;
   List<Episode> _episodes = [];
+  late bool _isFav;
 
   @override
   void initState() {
+    _isFav = FavoritesPage.isFavorite(widget.show);
     super.initState();
   }
 
   Future<void> getEpisodes() async {
     _episodes = await EpisodesApi.getEpisode(widget.show.id);
-    var l = _episodes.length;
     setState(() {
       _isLoading = false;
     });
+  }
+
+  void switchFavourite() {
+    setState(() {
+      _isFav = !_isFav;
+    });
+    FavoritesPage.changeFavShow(widget.show);
   }
 
   @override
@@ -43,10 +53,10 @@ class DetailsPageState extends State<DetailsPage> {
         ),
         actions: <Widget>[
           IconButton(
-            icon: const Icon(
-              Icons.favorite_outline,
-            ),
-            onPressed: () {},
+            icon: _isFav
+                ? const Icon(Icons.favorite,)
+                : const Icon(Icons.favorite_border_outlined),
+            onPressed: () { switchFavourite(); },
             color: Theme.of(context).appBarTheme.actionsIconTheme?.color,
           ),
         ],
@@ -75,7 +85,7 @@ class DetailsPageState extends State<DetailsPage> {
                                     .colorScheme
                                     .background
                                     .withOpacity(0.40),
-                                BlendMode.multiply),
+                                BlendMode.color),
                           )),
                         ),
                         Container( //GRADIENT BOX
@@ -165,7 +175,7 @@ class DetailsPageState extends State<DetailsPage> {
                     Container(
                       margin: const EdgeInsets.fromLTRB(20, 0, 18, 0),
                       child: Text(
-                        widget.show.genres.join(", "),
+                        widget.show.genres?.join(", ") == '' ? "Unknown" : widget.show.genres?.join(", ") ?? "Unknown",
                         style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           height: 1.2,
@@ -199,7 +209,7 @@ class DetailsPageState extends State<DetailsPage> {
                     Container(
                       margin: const EdgeInsets.fromLTRB(20, 0, 18, 20),
                       child: Text(
-                        widget.show.summary,
+                        widget.show.summary ?? "No summary.",
                         style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           height: 1.2,
@@ -214,7 +224,7 @@ class DetailsPageState extends State<DetailsPage> {
             ),
             SliverToBoxAdapter(
               child: Container(
-                margin: EdgeInsets.fromLTRB(18, 0, 18, 10),
+                margin: const EdgeInsets.fromLTRB(18, 0, 18, 10),
                 child: EpisodeList(show: widget.show, ),
                 ),
               ),
@@ -269,52 +279,4 @@ class FilmImage extends StatelessWidget {
 
     throw UnimplementedError();
   }
-}
-
-class imagePage extends StatelessWidget{
-  final String imageUrl;
-  const imagePage({super.key,
-    required this.imageUrl,
-  });
-
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Stack(
-        children: [
-          AppBar(
-            backgroundColor: Colors.black,
-            actions: [
-              IconButton(
-                alignment: Alignment.centerRight,
-                icon: const Icon(
-                  Icons.close,
-                ),
-                onPressed: () { Navigator.pop(context); },
-                color: Theme.of(context).appBarTheme.actionsIconTheme?.color,
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image(
-                image: NetworkImage(
-                  imageUrl,
-                ),
-                fit: BoxFit.cover,
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-    // TODO: implement build
-    throw UnimplementedError();
-  }
-
 }

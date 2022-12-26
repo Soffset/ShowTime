@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:progetto_esame/views/widgets/show_card.dart';
-import 'package:progetto_esame/models/show.dart';
+import 'package:ShowTime/views/widgets/show_card.dart';
+import 'package:ShowTime/models/show.dart';
 
 class CardThumbnail extends StatelessWidget {
   final Show show;

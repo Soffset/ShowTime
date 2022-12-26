@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:progetto_esame/models/episode.dart';
+import 'package:ShowTime/models/episode.dart';
 
 class EpisodeCard extends StatelessWidget{
   final Episode episode;
